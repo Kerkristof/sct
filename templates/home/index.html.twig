@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  {% if app.user %}
+    <h3>Vous êtes connecté en tant que {{app.user.firstname}} {{app.user.name}}</h3>
+  {% endif %}
+  <h1>bienvenue sur notre site dédié au surf casting</h1>
+{% endblock %}

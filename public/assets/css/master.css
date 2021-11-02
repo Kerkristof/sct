@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+body{
+  background-image: url(../pictures/carte1.png);
+}
+.col-2{
+  padding:0;
+}
+.logo_formulaire{
+  width: 80%;
+}
+.connexion{
+  background-color:orange;
+  border-radius: 50px;
+  padding: 0px 10px;
+  color:black;
+}
+
+/* .card-header{
+  text-align: center;
+}
+
+.card-text-area{
+  font-size:0.7rem;
+  width : 100%;
+  border-style:hidden;
+} */
+
+.btn{
+  font-size: small;
+  font-style: italic;
+}
+
+.form-field{
+  margin-top:20px;
+}
+
+.login-container{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 50%;
+  padding: 40px;
+  border-style: solid;
+  border-color: rgb(230, 230, 230);
+  border-radius: 10px;
+  background-color: rgb(240,240,240);
+}
+
+.link{
+  text-decoration: none;
+  color:Navy;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+label{
+  font-style: italic;
+  color:Navy;
+}
+.restricted_container{
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+@media screen and (max-width:500px){
+  .login-container h3 {
+    font-size:80%;
+  }
+}
