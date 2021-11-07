@@ -1,32 +1,82 @@
 * {
+  margin: 0px;
+  padding: 0px;
   box-sizing: border-box;
 }
-body{
-  background-image: url(../pictures/carte1.png);
+/* ---- NAVBAR ---- */
+.nav-bar{
+  font-family: 'Roboto';
+  height: 100px;
+  display:flex;
+  justify-content:space-around;
+  background-color:#0a3d62;
+  align-items:center;
 }
+.nav-links{
+  z-index: 3;
+  list-style: none;
+  display:flex;
+  justify-content:space-between;
+  width:80%;
+}
+.nav-links li a{
+  text-decoration: none;
+  font-size: 19px;
+  color: white;
+}
+.nav-links li:first-child{
+  text-transform: uppercase;
+}
+.nav-links li:last-child a{
+  background-color:lightgray;
+  border-radius: 50px;
+  padding: 0px 10px;
+  color:black;
+}
+.nav-burger div{
+  width:25px;
+  height:3px;
+  margin: 4px;
+  background-color: white;
+  cursor: pointer;
+}
+.nav-burger{
+  display:none;
+}
+@media only screen and (max-width: 1024px){
+  .nav-links{
+    flex-direction:column;
+    justify-content: space-around;
+    position:absolute;
+    top:80px;
+    left:0;
+    background-color:#0a3d62;
+    width:100%;
+    height:80vh;
+    visibility:hidden;
+  }
+  .nav-links li{
+    text-align:center;
+  }
+  .nav-burger{
+    display:block;
+  }
+  .responsive{
+    visibility:visible;
+  }
+}
+/* ---- NAVBAR END ---- */
+/* ---- PICTURES ---- */
+  #home-image{
+    width:100%;
+  }
+/* ---- PICTURES END ---- */
 .col-2{
   padding:0;
 }
 .logo_formulaire{
   width: 80%;
 }
-.connexion{
-  background-color:orange;
-  border-radius: 50px;
-  padding: 0px 10px;
-  color:black;
-}
-
-/* .card-header{
-  text-align: center;
-}
-
-.card-text-area{
-  font-size:0.7rem;
-  width : 100%;
-  border-style:hidden;
-} */
-
 .btn{
   font-size: small;
   font-style: italic;
