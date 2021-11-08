@@ -43,12 +43,12 @@
 .nav-burger{
   display:none;
 }
-@media only screen and (max-width: 1024px){
+@media screen and (max-width: 1024px){
   .nav-links{
     flex-direction:column;
     justify-content: space-around;
     position:absolute;
-    top:80px;
+    top:100px;
     left:0;
     background-color:#0a3d62;
     width:100%;
@@ -58,12 +58,15 @@
   .nav-links li{
     text-align:center;
   }
+  .nav-links li a{
+    font-size2vw;
+  }
   .nav-burger{
     display:block;
   }
-  .responsive{
-    visibility:visible;
-  }
+}
+.responsive{
+  visibility:visible;
 }
 /* ---- NAVBAR END ---- */
 /* ---- PICTURES ---- */
