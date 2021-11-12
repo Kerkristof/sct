@@ -10,9 +10,9 @@
 
 ### ESPACE PERSONNEL###
 
-#/public/assets/pictures
-#/public/brochures
-#/.env
+/public/assets/pictures
+/public/brochures
+/.env
 
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
