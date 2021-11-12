@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
+{% block stylesheets %}
+{% endblock %}
 
 {% block body %}
 <div class="login-container">
-  <div class="row">
-    <div class="col-2">
-      <img src="{{asset("assets/pictures/logo_club.jpg")}}" class="logo_formulaire" alt="logo">
+  <div class="login-header">
+    <div class="col-20">
+      <img src="{{asset("assets/pictures/logo_club_removebg.png")}}" class="logo_formulaire" alt="logo">
     </div>
-    <div class="col-10">
-      <h3>Connexion à votre espace abonné</h3>
+    <div class="col-80">
+      <h2>Connexion à votre espace abonné</h2>
     </div>
   </div>
   <hr>
@@ -33,20 +35,8 @@
     <input type="hidden" name="_csrf_token"
     value="{{ csrf_token('authenticate') }}"
     >
-
-    {#
-    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-    See https://symfony.com/doc/current/security/remember_me.html
-
-    <div class="checkbox mb-3">
-    <label>
-    <input type="checkbox" name="_remember_me"> Remember me
-    </label>
-    </div>
-    #}
-    <hr>
-    <button class="btn btn-lg btn-primary" type="submit">
-      Sign in
+    <button class="btn" type="submit">
+      Connexion
     </button>
   </form>
 </div>

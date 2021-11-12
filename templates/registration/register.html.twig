@@ -1,27 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Register{% endblock %}
+{% block stylesheets %}{% endblock %}
 
 {% block body %}
 <div class="login-container">
-  <div class="row">
-    <div class="col-2">
-      <img src="{{asset("assets/pictures/logo_club.jpg")}}" class="logo_formulaire" alt="forks">
+  <div class="login-header">
+    <div class="col-20">
+      <img src="{{asset("assets/pictures/logo_club_removebg.png")}}" class="logo_formulaire" alt="forks">
     </div>
-    <div class="col-10">
-      <h3>Création votre compte abonné</h3>
+    <div class="col-80">
+      <h2>Création votre compte abonné</h2>
     </div>
   </div>
-  <hr>
+  <br><hr><br>
   {{ form_start(registrationForm) }}
     {{ form_row(registrationForm.firstname)}}
     {{ form_row(registrationForm.name)}}
     {{ form_row(registrationForm.email) }}
     {{ form_row(registrationForm.password) }}
-    <br>
   {{ form_row(registrationForm.agreeTerms)}}
-  <hr>
-  <button type="submit" class="btn btn-success">Valider</button>
+  <button type="submit" class="btn">Valider</button>
   {{ form_end(registrationForm) }}
 </div>
 {% endblock %}

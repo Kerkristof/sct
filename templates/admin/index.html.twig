@@ -3,23 +3,24 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block body %}
-{% for flashError in app.flashes('protected_user') %}
-    <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-{% endfor %}
-{% for flashSuccess in app.flashes('success') %}
-    <div class="alert alert-success" role="alert">{{ flashSuccess }}</div>
-{% endfor %}
-<table class="table">
-  <tr>
-    <th>Prénom</th>
-    <th>Nom</th>
-    <th>Date de création</th>
-    <th>Email</th>
-    <th>Roles</th>
-    <th>Modifier</th>
-    <th>Supprimer</th>
-  </tr>
-  {% for user in users %}
+<div class="restricted_container">
+  {% for flashError in app.flashes('protected_user') %}
+  <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+  {% endfor %}
+  {% for flashSuccess in app.flashes('success') %}
+  <div class="alert alert-success" role="alert">{{ flashSuccess }}</div>
+  {% endfor %}
+  <table class="table">
+    <tr>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Date de création</th>
+      <th>Email</th>
+      <th>Roles</th>
+      <th>Modifier</th>
+      <th>Supprimer</th>
+    </tr>
+    {% for user in users %}
     <tr>
       <td>{{user.firstname}}</td>
       <td>{{user.name}}</td>
@@ -47,6 +48,7 @@
         </form>
       </td>
     </tr>
-  {% endfor %}
-</table>
+    {% endfor %}
+  </table>
+</div>
 {% endblock %}

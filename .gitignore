@@ -4,15 +4,15 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-#/var/
+/var/
 /vendor/
 ###< symfony/framework-bundle ###
 
 ### ESPACE PERSONNEL###
 
-/public/assets/pictures
-/public/brochures
-/.env
+#/public/assets/pictures
+#/public/brochures
+#/.env
 
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
