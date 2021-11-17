@@ -1,51 +1,69 @@
 * {
+  box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  box-sizing: border-box;
   text-decoration: none;
+}
+body{
+  background-image: url('../pictures/carte1.png');
+}
+.main{
+  z-index: 1;
 }
 /* ---- NAVBAR ---- */
 .nav-bar{
-  position:fixed;
+  z-index: 3;
+  position:sticky;
   top: 0;
   width: 100%;
-  font-family: 'Roboto';
   height: 100px;
+  font-family: 'Roboto';
   display:flex;
   justify-content:space-around;
   background-color:#0a3d62;
   align-items:center;
 }
 .nav-links{
-  z-index: 3;
-  list-style: none;
   display:flex;
-  justify-content:space-between;
+  justify-content: space-between;
   width:80%;
 }
-.nav-links li a{
-  text-decoration: none;
-  font-size: 19px;
+.nav-links li{
+  list-style:none;
+  cursor:pointer;
+}
+.nav-links li a, .nav-links li{
+  font-familly:sans-serif;
+  font-size:22px;
   color: white;
 }
-.nav-links li a:hover{
-  font-style: italic;
-  font-weight: bold;
-  color:orange;
+.nav-links>li:first-child>a{
+  text-transform:uppercase;
 }
-.nav-links li:first-child{
-  text-transform: uppercase;
-}
-.nav-links li:last-child a{
+.nav-links>li:last-child{
   background-color:lightgray;
-  border-radius: 50px;
-  padding: 0px 10px;
+  border-radius: 25px;
+  padding: 0 10px;
+}
+.nav-links>li:last-child a{
   color:black;
 }
-.nav-links li:last-child a:hover{
-  background-color:orange;
-  color:black;
+.nav-sublinks{
+  position:absolute;
+  display:flex;
+  flex-direction: column;
+  background-color:#0a3d62;
+  padding:0 10px;
+  visibility:hidden;
 }
+.nav-sublinks li{
+  margin:15px 0;
+}
+.nav-sublinks li a{
+  font-size: 18px;
+  font-style: italic;
+}
+
 .nav-burger div{
   width:25px;
   height:3px;
@@ -71,8 +89,9 @@
   .nav-links li{
     text-align:center;
   }
-  .nav-links li a{
-    font-size2vw;
+  .nav-sublinks{
+    width:100%;
+    text-align:center;
   }
   .nav-burger{
     display:block;
@@ -82,12 +101,11 @@
   visibility:visible;
 }
 .scroll{
-  border-bottom: 3px solid #041c59;
+  border-bottom: 5px solid #041c59;
 }
 /* ---- NAVBAR END ---- */
 /* ---- PICTURES ---- */
   #home-image{
-    margin-top:100px;
     background-repeat: no-repeat;
     background-size: cover;
     height:100vh;
@@ -95,7 +113,8 @@
 /* ---- PICTURES END ---- */
 
 .restricted_container{
-  margin:100px auto 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   width: 80%;
 }
 /* ---- USEFULL LINK ---- */

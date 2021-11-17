@@ -20,10 +20,21 @@
     </div>
     <ul class="nav-links">
       <li><a href="{{ path('home')}}">accueil</a></li>
-      <li><a href="{{ path('useful_link')}}">Les liens utiles</a></li>
+      <li class="down-link">Liens utiles <i class="fa fa-caret-down"></i>
+        <ul class=" down-link nav-sublinks">
+          <li><a href="{{ path('useful_link')}}">Documents officiels</a></li>
+          <li><a href="{{ path('useful_link')}}">Sites utiles</a></li>
+        </ul>
+      </li>
       <li><a href="{{ path('home')}}">Contactez nous</a></li>
       {% if is_granted('ROLE_MEMBER') %}
-      <li><a href="{{ path('member_index')}}">Espace Membres</a></li>
+      <li class="down-link">Espace Membres <i class="fa fa-caret-down"></i>
+        <ul class=" down-link nav-sublinks">
+          <li><a href="{{ path('member_index')}}">Nos ateliers</a></li>
+          <li><a href="{{ path('member_index')}}">Nos documents</li>
+          <li><a href="#">Blog (en travaux)</a></li>
+        </ul>
+      </li>
       {% endif %}
       {% if is_granted('ROLE_ADMIN') %}
       <li><a href="{{ path('admin_index') }}">Espace Admin</a></li>
@@ -41,10 +52,13 @@
       <div></div>
     </div>
   </nav>
-{% block body %}{% endblock %}
+  <div class="main">
+  {% block body %}{% endblock %}
+  </div>
 {% block javascripts %}{% endblock %}
 </body>
 <footer>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="{{asset('assets/js/script.js')}}"></script>
 </footer>
