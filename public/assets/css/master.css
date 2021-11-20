@@ -113,8 +113,10 @@ body{
 /* ---- PICTURES END ---- */
 
 .restricted_container{
-  margin-left: auto;
-  margin-right: auto;
+  margin:30px auto 0 auto;
+  padding:0 20px 10px 20px;
+  border-radius:10px;
+  background-color: white;
   width: 80%;
 }
 /* ---- USEFULL LINK ---- */
@@ -128,6 +130,24 @@ body{
   text-decoration: none;
   color:Navy;
   font-style: italic;
+}
+/* ---- TABLE ---- */
+.table{
+  width:100%;
+}
+/* ALERT */
+.alert{
+  width: 100%;
+  margin:15px 0;
+  padding:15px 15px;
+  border-radius: 10px;
+  color: black;
+}
+.alert-success{
+  background-color:#2ecc71;
+}
+.alert-danger{
+  background-color:#e74c3c;
 }
 /* ---- FOOTER ---- */
 .footer{

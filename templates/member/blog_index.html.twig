@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="restricted_container">
+  <!-- FORMULAIRE DE COMMENTAIRE -->
+  {% if app.user %}
+  <form action="{{path('member_blog_post')}}" method="post">
+      <input class="form-control" placeholder="Ajouter un commentaire..."  name="content" required>
+      <button class="btn"  type="submit">Publier</button>
+  </form>
+  {% endif %}
+</div>
+<div class="restricted_container">
+  <!-- AFFICHAGE DES COMMENTAIRES -->
+  {% for comment in blog_comments %}
+    <i><small>De <strong>{{comment.author.firstname}} {{comment.author.name}}</strong>
+      le {{comment.createdAt | date('d/m/Y à H:i')}}</small></i>
+    <p>{{comment.content}}</p>
+
+    <!-- SUPPRIMER UN COMMENTAIRE-->
+    <!-- {% if is_granted('ROLE_ADMIN') %}
+      <a href="{{ path('member_blog_delete', {'id': comment.id})}}" class="btn btn-danger">Supprimer</a>
+    {% endif %} -->
+  <br><hr>
+{% endfor %}
+</div>
+{% endblock %}
