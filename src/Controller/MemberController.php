@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\BlogCommentRepository;
 use App\Entity\BlogComment;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,9 +26,14 @@ class MemberController extends AbstractController
     /**
      * @Route("blog/index", name="member_blog_index"): Response
      */
-    public function blog_index(BlogCommentRepository $blog_repo)
+    public function blog_index(BlogCommentRepository $blog_repo, PaginatorInterface $paginator, Request $request)
     {
-      $blog_comments = $blog_repo->findBy([], ['createdAt' => 'DESC']);
+      $data = $blog_repo->findBy([], ['createdAt' => 'DESC']);
+      $blog_comments = $paginator->paginate(
+        $data,
+        $current_page = $request->query->getInt('page', 1),
+        5
+      );
       return $this->render('member/blog_index.html.twig', [
         'blog_comments' => $blog_comments
       ]);
