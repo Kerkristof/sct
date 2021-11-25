@@ -13,12 +13,13 @@
   <!-- AFFICHAGE DES COMMENTAIRES -->
   {% for comment in blog_comments %}
   <i><small>De <strong>{{comment.author.firstname}} {{comment.author.name}}</strong>
-    le {{comment.createdAt | date('d/m/Y à H:i')}}</small></i>
+    le {{comment.createdAt | date('d/m/Y à H:i')}}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('member_blog_delete', {'id': comment.id})}}">Supprimer</a>
+    {% endif %}</small></i>
+
     <p>{{comment.content}}</p>
   <!-- SUPPRIMER UN COMMENTAIRE-->
-  <!-- {% if is_granted('ROLE_ADMIN') %}
-  <a href="{{ path('member_blog_delete', {'id': comment.id})}}" class="btn btn-danger">Supprimer</a>
-  {% endif %} -->
   <br><hr>
 {% endfor %}
 <!-- PAGINATION -->

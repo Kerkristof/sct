@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+  <div class="restricted_container">
+    <h3>Catégories d'évènements</h3>
+    <hr>
+    {% for event_category in event_categories %}
+      <h5>{{ event_category.title}} <small><i><a href="{{ path('event_category_update', {'id' : event_category.id}) }}">Modifier</a></i></small> </h5>
+      <p>{{ event_category.content}}</p>
+      <hr>
+    {% endfor %}
+    <small><i><a href="{{path('event_category_create')}}">Ajouter une catégorie</a><i></small>
+  </div>
+{% endblock %}
