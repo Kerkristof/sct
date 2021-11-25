@@ -7,6 +7,22 @@
     <p>Club  de Surfcasting de La Turballe</p>
   </div>
 </div>
+{% if is_granted('ROLE_MEMBER') %}
+  <div class="restricted_container">
+    <h2>Les dernières nouvelles du front</h2>
+    <br>
+    {% for comment in blog_comments %}
+    <i><small>De <strong>{{comment.author.firstname}} {{comment.author.name}}</strong>
+      le {{comment.createdAt | date('d/m/Y à H:i')}}</small></i>
+      <p>{{comment.content}}</p>
+      <br>
+    {% endfor%}
+    <br>
+    <small><i><a class="btn"href="{{ path('member_blog_index')}}">Accéder au blog</a></i></small>
+  </div>
+{% endif %}
+
+
 <div class="footer">
   <p>Rejoingnez notre groupe FaceBook <a href="https://www.facebook.com/groups/962506810816597"></a></p>
   <p>Le site du club <a href="https://www.pechesousmarine.fr">SCT</a></p>

@@ -20,27 +20,27 @@
     </div>
     <ul class="nav-links">
       <li><a href="{{ path('home')}}">accueil</a></li>
-      <li class="down-link">Liens utiles <i class="fa fa-caret-down"></i>
-        <ul class=" down-link nav-sublinks">
-          <li><a href="{{ path('useful_link')}}">Documents officiels</a></li>
-          <li><a href="{{ path('useful_link')}}">Sites utiles</a></li>
-        </ul>
-      </li>
+      <li><a href="{{ path('useful_link')}}">Liens utiles</a></li>
       <li><a href="{{ path('home')}}">Contactez nous</a></li>
       {% if is_granted('ROLE_MEMBER') %}
       <li class="down-link">Espace Membres <i class="fa fa-caret-down"></i>
         <ul class=" down-link nav-sublinks">
-          <li><a href="{{ path('member_index')}}">Nos ateliers</a></li>
           <li><a href="{{ path('member_index')}}">Nos documents</li>
           <li><a href="{{ path('member_blog_index')}}">Blog</a></li>
         </ul>
       </li>
       {% endif %}
       {% if is_granted('ROLE_ADMIN') %}
-      <li><a href="{{ path('admin_index') }}">Espace Admin</a></li>
+        <li class="down-link">Espace Admin <i class="fa fa-caret-down"></i>
+          <ul class=" down-link nav-sublinks">
+            <li><a href="{{ path('admin_index')}}">Comptes utilisateurs</a></li>
+            <li><a href="#">Messages reçus</li>
+            <li><a href="#">Gestion des événements</a></li>
+          </ul>
+        </li>
       {% endif %}
       {% if not app.user %}
-      <li><a href="{{ path('app_register') }}"><i>Enregistrement</i></a></li>
+      <li><a href="{{ path('app_register') }}"><i>Créer un compte</i></a></li>
       <li><a href="{{ path('app_login') }}"><i>Connexion</i></a></li>
       {% else %}
       <li><a href="{{ path('app_logout') }}">{{ app.user.username }} / Déconnexion</a></li>
