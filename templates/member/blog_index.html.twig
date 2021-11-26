@@ -23,15 +23,7 @@
   <br><hr>
 {% endfor %}
 <!-- PAGINATION -->
-<p>
-{% if blog_comments.getCurrentPageNumber > 1 %}
-<strong><a href="{{path('member_blog_index', {'page' : blog_comments.getCurrentPageNumber - 1})}}"> préc. / </a></strong>
-{% endif %}
-Page {{blog_comments.getCurrentPageNumber}}
-{% if blog_comments.getCurrentPageNumber < blog_comments.getPageCount %}
-<strong><a href="{{path('member_blog_index', {'page' : blog_comments.getCurrentPageNumber + 1})}}"> / suiv. </a></strong>
-{% endif %}
-</p>
+{{ knp_pagination_render(blog_comments) }}
 </div>
 
 {% endblock %}

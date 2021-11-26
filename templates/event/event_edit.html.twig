@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="restricted_container">
+ <h2>Nouvel évènement</h2>
+ {{ form_start(formEvent) }}
+ {{ form_row(formEvent.category, { 'label' : "Catégorie", 'attr' : {'class':'form-control'}}) }}
+ {{ form_row(formEvent.date, {'label' : 'Date'} )}}
+ {{ form_row(formEvent.title, { 'label' : "Nom", 'attr' : {'placeholder' : "Entrez un titre", 'class':'form-control'}}) }}
+ {{ form_row(formEvent.content, { 'label' : "Description", 'attr' : {'placeholder' : "Entrez une description", 'class':'form-control'}}) }}
+
+ <button type="submit" class="btn btn-success">
+   {% if editMode %}
+     Enregistrer les modifications
+   {% else %}
+     Ajouter l'évènement
+   {% endif %}
+ </button>
+ {{ form_end(formEvent) }}
+</div>
+{% endblock %}

@@ -11,6 +11,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\BlogCommentRepository;
 use App\Entity\BlogComment;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\EventRepository;
 /**
  * @Route("/member")
  */
@@ -23,8 +24,13 @@ class MemberController extends AbstractController
     {
       return $this->render('member/index.html.twig');
     }
+
     /**
-     * @Route("blog/index", name="member_blog_index"): Response
+     * @Route("/blog/index", name="member_blog_index"): Response
+     * @param  BlogCommentRepository $blog_repo [description]
+     * @param  PaginatorInterface    $paginator [description]
+     * @param  Request               $request   [description]
+     * @return [type]                           [description]
      */
     public function blog_index(BlogCommentRepository $blog_repo, PaginatorInterface $paginator, Request $request)
     {
@@ -39,7 +45,7 @@ class MemberController extends AbstractController
       ]);
     }
     /**
-     * @Route("blog/post", name="member_blog_post")
+     * @Route("/blog/post", name="member_blog_post")
      * @param  BlogComment            $BlogComment   [description]
      * @param  Request                $request       [description]
      * @param  EntityManagerInterface $entityManager [description]
@@ -68,5 +74,23 @@ class MemberController extends AbstractController
       $entityManager->flush();
       return $this->RedirectToRoute('member_blog_index');
 
+    }
+
+    /**
+     * @Route("/event/index", name="member_event_index")
+     * @param  EventRepository $event_repo [description]
+     * @return [type]                      [description]
+     */
+    public function event_index(EventRepository $event_repo, PaginatorInterface $paginator, Request $request)
+    {
+      $data = $event_repo->findBy([], ['date' => "DESC"]);
+      $events = $paginator->paginate(
+        $data,
+        $current_page = $request->query->getInt('page', 1),
+        6
+      );
+      return $this->render('member/event_index.html.twig', [
+        'events' => $events
+      ]);
     }
 }

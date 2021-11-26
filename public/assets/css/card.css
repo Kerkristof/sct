@@ -1,0 +1,32 @@
+.card-container{
+  align-items: center;
+}
+.card{
+  align-items: flex-start;
+  display:inline-block;
+  border: 1px solid gray;
+  border-radius: 3px;
+  margin:10px 10px;
+  width:30%;
+}
+.card-header{
+  text-align: center;
+  background-color:#a4c3f5;
+  height:10vh  ;
+  padding:10px;
+
+}
+.card-main{
+  background-color:#f0f4f5;
+  max-height:20vh;
+  padding:10px;
+}
+@media screen and (max-width:1300px){
+  .card{
+    width:45%;
+  }
+}
+@media screen and (max-width:1024px){
+  .card{
+    width:100%;
+  }
