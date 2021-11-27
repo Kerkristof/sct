@@ -7,7 +7,9 @@
     <p>Club  de Surfcasting de La Turballe</p>
   </div>
 </div>
+<!-- AFFICHAGE BLOG ET EVENEMENTS RESERVES AUX MEMEBRES DU CLUB -->
 {% if is_granted('ROLE_MEMBER') %}
+<!-- AFFICHAGE 5 DERNIERS MESSAGES DU BLOG SUR LA PAGE D ACCUEIL -->
   <div class="restricted_container">
     <h2>Les dernières nouvelles du front</h2>
     <br>
@@ -19,6 +21,29 @@
     {% endfor%}
     <br>
     <small><i><a class="btn"href="{{ path('member_blog_index')}}">Accéder au blog</a></i></small>
+  </div>
+<!-- AFFICHAGE DES EVENEMENTS A VENIR SUR LA PAGE D ACCUEIL -->
+  <div class="restricted_container">
+    <h2>Nos événements à venir</h2>
+    {% for event in events %}
+      {% if event.date > date() %}
+        <div class="card">
+          <div class="card-header">
+            <h4><i><small><span style="color:red">A VENIR </span></small>Le {{event.date | date('d/m/Y')}}</i></h4>
+            <h3>{{ event.title}}</h3>
+          </div>
+          <div class="card-main">
+            <p>{{event.content}}</p>
+          </div>
+          <div class="card-footer">
+            <p>Créé le {{event.createdAt | date('d/m/Y')}} par {{event.author.firstname}} {{event.author.name}}</p>
+            <p>Mis à jour le {{event.updatedAt | date('d/m/Y')}}</p>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+    <br>
+    <small><i><a class="btn"href="{{ path('member_event_index')}}">Voir tous les événements</a></i></small>
   </div>
 {% endif %}
 
