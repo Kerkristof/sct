@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="restricted_container">
+  {{ form_start(formEventFile) }}
+  {{ form_row(formEventFile.filename, {'label' : "Choisissez votre fichier", 'attr' : {'class':'form-control'}}) }}
+  <button type="submit" class="btn">Ajouter</button>
+  {{ form_end(formEventFile) }}
+</div>
+{% endblock %}

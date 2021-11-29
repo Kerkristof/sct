@@ -11,6 +11,7 @@
 ### ESPACE PERSONNEL###
 
 /public/brochures
+/public/files
 /.env
 /.env.test
 ###> symfony/phpunit-bridge ###

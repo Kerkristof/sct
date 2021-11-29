@@ -21,6 +21,7 @@
           {% endif %}
         {{ event.title}} Le {{ event.date | date('d/m/Y')}}
         <small><i><a href="{{ path('event_update', {'id' : event.id}) }}">Modifier</a></i></small>
+        <small><i><a href="{{ path('add_event_file', {'id' : event.id}) }}">Ajouter un fichier</a></i></small>
         </h5>
         <p>{{ event.content}}</p>
         <hr>

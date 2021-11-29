@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EventRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -52,6 +54,16 @@ class Event
      * @ORM\ManyToOne(targetEntity=User::class)
      */
     private $Author;
+
+    /**
+     * @ORM\OneToMany(targetEntity=EventFile::class, mappedBy="event", orphanRemoval=true)
+     */
+    private $eventFiles;
+
+    public function __construct()
+    {
+        $this->eventFiles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -138,6 +150,36 @@ class Event
     public function setAuthor(?User $Author): self
     {
         $this->Author = $Author;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EventFile[]
+     */
+    public function getEventFiles(): Collection
+    {
+        return $this->eventFiles;
+    }
+
+    public function addEventFile(EventFile $eventFile): self
+    {
+        if (!$this->eventFiles->contains($eventFile)) {
+            $this->eventFiles[] = $eventFile;
+            $eventFile->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEventFile(EventFile $eventFile): self
+    {
+        if ($this->eventFiles->removeElement($eventFile)) {
+            // set the owning side to null (unless already changed)
+            if ($eventFile->getEvent() === $this) {
+                $eventFile->setEvent(null);
+            }
+        }
 
         return $this;
     }

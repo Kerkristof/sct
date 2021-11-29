@@ -7,12 +7,15 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Entity\EventCategory;
 use App\Form\EventCategoryType;
 use App\Repository\EventCategoryRepository;
 use App\Entity\Event;
 use App\Form\EventType;
 use App\Repository\EventRepository;
+use App\Entity\EventFile;
+use App\Form\EventFileType;
 
 /**
  * @Route("/admin")
@@ -89,6 +92,52 @@ class EventController extends AbstractController
       return $this->render('event/event_edit.html.twig', [
         'formEvent' => $form->createView(),
         'editMode' => $event->getId() != null
+      ]);
+    }
+
+    /**
+     * @Route("/event/add_event_file/{id}", name="add_event_file")
+     * @param Event                  $event   [description]
+     * @param Request                $request [description]
+     * @param EntityManagerInterface $manager [description]
+     */
+    public function add_event_file(Event $event, Request $request, EntityManagerInterface $manager, SluggerInterface $slugger){
+      $event_file = new EventFile;
+      $event_file->setEvent($event);
+      $form = $this->createForm(EventFileType::class, $event_file);
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()){
+        /** @var UploadedFile $brochureFile */
+        $pdf = $form->get('filename')->getData();
+
+        if ($pdf) {
+          $originalFilename = pathinfo($pdf->getClientOriginalName(), PATHINFO_FILENAME);
+        // this is needed to safely include the file name as part of the URL
+        $safeFilename = $slugger->slug($originalFilename);
+        $newFilename = $safeFilename.'-'.uniqid().'.'.$pdf->guessExtension();
+
+        // Move the file to the directory where brochures are stored
+        try {
+            $pdf->move(
+                $this->getParameter('upload_directory'),
+                $newFilename
+            );
+        } catch (FileException $e) {
+            // ... handle exception if something happens during file upload
+        }
+
+        // updates the 'brochureFilename' property to store the PDF file name
+        // instead of its contents
+        $event_file->setName($originalFilename);
+        $event_file->setFileName($newFilename);
+        $manager->persist($event_file);
+        $manager->flush($event_file);
+
+        }
+        return $this->RedirectToRoute('event_index');
+      }
+      return $this->render('event/add_event_file.html.twig', [
+        'formEventFile' => $form->createView(),
       ]);
     }
 

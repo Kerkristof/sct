@@ -14,10 +14,13 @@
         <h3>{{ event.title}}</h3>
       </div>
       <div class="card-main">
-        <p>{{event.content}}</p>
+        <p>{{event.content}}</p><br>
+        {% for file in event.eventFiles %}
+        <a href="{{ asset('/files/'~ file.fileName)}}" target="blanc"pdf><small><i>{{ file.name }} (PDF)</small></i></a><br>
+        {% endfor %}
       </div>
       <div class="card-footer">
-        <p>Créé le {{event.createdAt | date('d/m/Y')}} par {{event.author.firstname}} {{event.author.name}}</p>
+      <p>Créé le {{event.createdAt | date('d/m/Y')}} par {{event.author.firstname}} {{event.author.name}}</p>
         <p>Mis à jour le {{event.updatedAt | date('d/m/Y')}}</p>
       </div>
     </div>
