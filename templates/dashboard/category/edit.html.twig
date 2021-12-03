@@ -1,0 +1,17 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block body %}
+
+{{ form_start(formCategory) }}
+
+{{ form_row(formCategory.title, { 'label' : "Nom", 'attr' : {'placeholder' : "Entrez le nom de la catégorie", 'class':'form-control'}}) }}
+{{ form_row(formCategory.content, { 'label' : "Description", 'attr' : {'placeholder' : "Entrez une desc...", 'class':'form-control'}}) }}
+<button type="submit" class="btn btn-success">
+  {% if editMode %}
+  Enregistrer les modifications
+  {% else %}
+  Ajouter la catégorie
+  {% endif %}
+</button>
+{{ form_end(formCategory) }}
+
+{% endblock %}

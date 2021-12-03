@@ -1,0 +1,20 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block body %}
+  <a class="btn" href="{{path('admin_category_create')}}">Ajouter une catégorie</a>
+  <h3>Catégories d'évènements</h3>
+  <hr>
+  <table>
+    <tr>
+      <th>Nom de la catégorie</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+    {% for event_category in event_categories %}
+    <tr>
+      <td>{{ event_category.title}}</td>
+      <td>{{ event_category.content}}</td>
+      <td><small><i><a href="{{path('admin_category_update', {'id' : event_category.id})}}">Modifier</a></i></small></td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

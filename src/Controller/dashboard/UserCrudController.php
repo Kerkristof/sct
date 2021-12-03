@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\dashboard;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,22 +14,22 @@ use Doctrine\ORM\EntityManagerInterface;
 /**
  * @Route("/admin")
  */
-class AdminController extends AbstractController
+class UserCrudController extends AbstractController
 {
     /**
-     * @Route("/index", name="admin_index")
+     * @Route("/index", name="admin_user_index")
      */
     public function index(UserRepository $user_repo): Response
     {
         $users = $user_repo->findBy([], ['roles' => 'DESC']);
-        return $this->render('admin/index.html.twig', [
+        return $this->render('dashboard/user/index.html.twig', [
           'users' => $users,
           ]) ;
     }
 
     /**
      * [update_role description]
-     * @Route("/update/{id}", name="admin_update_user")
+     * @Route("/update/{id}", name="admin_user_update")
      * @param  User    $user    [description]
      * @param  Request $request [description]
      * @return [type]           [description]
@@ -47,11 +47,11 @@ class AdminController extends AbstractController
       else {
         $this->addFlash('protected_user', 'Vous ne pouvez pas modifier cet utilisateur');
       }
-      return $this->redirectToRoute('admin_index');
+      return $this->redirectToRoute('admin_user_index');
     }
 
     /**
-     * @Route("/delete/{id}", name="admin_delete_user")
+     * @Route("/delete/{id}", name="admin_user_delete")
      * @param  User  $user [description]
      * @return [type]       [description]
      */
@@ -65,6 +65,6 @@ class AdminController extends AbstractController
       else {
         $this->addFlash('protected_user', 'Vous ne pouvez pas supprimer cet utilisateur');
       }
-      return $this->redirectToRoute('admin_index');
+      return $this->redirectToRoute('admin_user_index');
     }
 }

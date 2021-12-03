@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>SCT dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('assets/css/dashboard.css')}}">
+  </head>
+  <body>
+    <div class="dashboard-header">
+      <h1>Dashboard</h1>
+    </div>
+    <div class="dashboard-core">
+      <div class="nav-bar">
+        <div class="nav-logo">
+          <i class="fa fa-home" style="font-size:60px;color:blue;"></i>
+        </div>
+        <div class="nav-links">
+          <a href="{{path('admin_user_index')}}"><i class="fa fa-user" style="font-size:25px;color:gray;"></i> Utilisateurs</a>
+          <a href="{{path('admin_category_index')}}"><i class="fa fa-list" style="font-size:25px;color:gray;"></i> Catégories</a>
+          <a href="{{path('admin_event_index')}}"><i class="fa fa-calendar" style="font-size:25px;color:gray;"></i> Evénements</a>
+          <a href="{{path('home')}}"><i class="fa fa-times" style="font-size:25px;color:gray;"></i> Quitter</a>
+        </div>
+      </div>
+      <div class="dashboard-content">
+        {% block body %}{% endblock %}
+      </div>
+
+    </div>
+
+  </body>
+</html>

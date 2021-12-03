@@ -33,13 +33,7 @@
       </li>
       {% endif %}
       {% if is_granted('ROLE_ADMIN') %}
-        <li class="down-link">Espace Admin <i class="fa fa-caret-down"></i>
-          <ul class=" down-link nav-sublinks">
-            <li><a href="{{ path('admin_index')}}">Comptes utilisateurs</a></li>
-            <li><a href="#">Messages reçus</li>
-            <li><a href="{{ path('event_index')}}">Gestion des événements</a></li>
-          </ul>
-        </li>
+        <li><a href="{{path('dashboard')}}">Dashboard</a></li>
       {% endif %}
       {% if not app.user %}
       <li><a href="{{ path('app_register') }}"><i>Créer un compte</i></a></li>

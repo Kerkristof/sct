@@ -3,8 +3,8 @@
 {% block body %}
 <div id="header-image">
   <div id="header-logo">
-    <p>CST</p>
-    <p>Club  de Surfcasting de La Turballe</p>
+    <p>SCT</p>
+    <p>Surfcasting Turballais</p>
   </div>
 </div>
 <!-- AFFICHAGE BLOG ET EVENEMENTS RESERVES AUX MEMEBRES DU CLUB -->
@@ -33,7 +33,10 @@
             <h3>{{ event.title}}</h3>
           </div>
           <div class="card-main">
-            <p>{{event.content}}</p>
+            <p>{{event.content}}</p><br>
+            {% for file in event.eventFiles %}
+            <a href="{{ asset('/files/'~ file.fileName)}}" target="blanc"pdf><small><i>{{ file.name }} (PDF)</small></i></a><br>
+            {% endfor %}
           </div>
           <div class="card-footer">
             <p>Créé le {{event.createdAt | date('d/m/Y')}} par {{event.author.firstname}} {{event.author.name}}</p>
