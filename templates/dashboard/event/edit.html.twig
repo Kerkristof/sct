@@ -1,7 +1,7 @@
 {% extends 'dashboard/base.html.twig' %}
 
 {% block body %}
-<div class="restricted_container">
+<div class="form">
  {{ form_start(formEvent) }}
  {{ form_row(formEvent.category, { 'label' : "Catégorie", 'attr' : {'class':'form-control'}}) }}
  {{ form_row(formEvent.date, {'label' : 'Date'} )}}

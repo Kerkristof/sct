@@ -1,15 +1,8 @@
-a{
-  text-decoration:none;
-}
-.dashboard-header{
-  text-align:center;
-  color: gray;
-}
+/* -------------------
+   *** LAYOUT ***
+------------------- */
 .dashboard-core{
   display: flex;
-}
-.dashboard-content{
-  width:85%;
 }
 .nav-bar{
   display:flex;
@@ -17,12 +10,25 @@ a{
   align-items:center;
   width:15%;
 }
-.nav-logo{
-  padding:30px 0;
+.dashboard-content{
+  width:85%;
 }
 .nav-links{
   display:flex;
   flex-direction:column;
+}
+/* -------------------
+   *** MODULS ***
+------------------- */
+a{
+  text-decoration:none;
+}
+.dashboard-header{
+  text-align:center;
+  color: gray;
+}
+.nav-logo{
+  padding:30px 0;
 }
 .nav-links a{
   color:gray;
@@ -44,9 +50,8 @@ a{
 .alert-danger{
   background-color:#e74c3c;
 }
-form{
-  display: flex;
-  flex-direction: column;
+.form{
+  width:80%;
 }
 .form-control{
   width: 100%;
@@ -70,10 +75,12 @@ label{
   margin-top:10px;
   padding: 7px;
   border-radius: 5px;
-  background-color:#0a3d62;
   font-size:1rem;
   color:white;
 }
+.btn-primary{background-color:#0a3d62;}
+.btn-danger{background-color:#e74c3c;}
+.btn-success{background-color:#2ecc71;}
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -86,7 +93,7 @@ td, th {
   padding: 8px;
 }
 
-tr:nth-child(even) {
+tr:nth-child(even) {primary
   background-color: #dddddd;
 }
 textarea{

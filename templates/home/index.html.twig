@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div id="header-image">
+<div class="wave-container">
   <div id="header-logo">
     <p>SCT</p>
     <p>Surfcasting Turballais</p>
   </div>
+  <path fill="#fff" d="…"></path>
+</svg>
 </div>
 <!-- AFFICHAGE BLOG ET EVENEMENTS RESERVES AUX MEMEBRES DU CLUB -->
 {% if is_granted('ROLE_MEMBER') %}
@@ -52,7 +54,8 @@
 
 
 <div class="footer">
-  <p>Rejoingnez notre groupe FaceBook <a href="https://www.facebook.com/groups/962506810816597"></a></p>
-  <p>Le site du club <a href="https://www.pechesousmarine.fr">SCT</a></p>
+  <a href="https://www.pechesousmarine.fr">https://www.surfcastingturballais.fr </a><span>/</span>
+  <a href="#">Mentions légales </a></a><span> / </span>
+  <a href="https://www.facebook.com/groups/962506810816597" target="_blank"> <i class="footer-icon fa fa-facebook-square"></i>
 </div>
 {% endblock %}

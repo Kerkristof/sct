@@ -12,14 +12,14 @@ body{
 }
 
 /* ---- PICTURES ---- */
-#header-image{
+.wave-container{
   display:flex;
   justify-content: center;
   align-items: center;
   background-image: url("../../assets/pictures/plage.jpg");
   background-repeat: no-repeat;
   background-size:cover;
-  height: 80vh;
+  height:80vh;
 }
 #header-logo{
   width: 40%;
@@ -103,10 +103,17 @@ body{
   height:15vh;
   background-color:black;
   display:flex;
-  justify-content:space-around;
   align-items: center;
 }
-.footer p{
+.footer a{
   font-family: 'Roboto', sans-serif;
+  font-size:18px;
   color:white;
+}
+.footer span{
+  font-size: 22px;
+  color: white;
+}
+.footer i{
+  font-size: 50px;
 }

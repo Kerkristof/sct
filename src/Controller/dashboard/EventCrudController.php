@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use App\Repository\EventRepository;
 use App\Repository\EventCategoryRepository;
 use App\Entity\Event;
@@ -62,6 +63,21 @@ class EventCrudController extends AbstractController
     ]);
   }
   /**
+   * @Route("/event/delete/{id}", name="admin_event_delete")
+   * @param  Event                  $event   [description]
+   * @param  EntityManagerInterface $manager [description]
+   * @return [type]                          [description]
+   */
+  public function event_delete(Event $event, EntityManagerInterface $manager, Filesystem $file_system){
+    foreach ($event->getEventFiles() as $event_file) {
+      $pdf = $event_file->getFileName();
+      $file_system->remove($this->getParameter('upload_directory').'/'.$pdf);
+    }
+    $manager->remove($event);
+    $manager->flush($event);
+    return $this->redirectToRoute('admin_event_index');
+  }
+  /**
    * @Route("/event/add_file/{id}", name="admin_event_add_file")
    * @param Event                  $event   [description]
    * @param Request                $request [description]
@@ -104,5 +120,19 @@ class EventCrudController extends AbstractController
     return $this->render('dashboard/event/add_file.html.twig', [
       'formEventFile' => $form->createView(),
     ]);
+  }
+
+  /**
+   * @Route("/event/delete_file/{id}", name="admin_event_delete_file")
+   * @param  EventFile $event_file [description]
+   * @return [type]                [description]
+   */
+  public function delete_event_file(EventFile $event_file, EntityManagerInterface  $manager){
+    $file_system = new Filesystem;
+    $pdf = $event_file->getFileName();
+    $file_system->remove($this->getParameter('upload_directory').'/'.$pdf);
+    $manager->remove($event_file);
+    $manager->flush($event_file);
+    return $this->redirectToRoute('admin_event_index');
   }
 }

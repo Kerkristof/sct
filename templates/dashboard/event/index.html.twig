@@ -1,6 +1,6 @@
 {% extends 'dashboard/base.html.twig' %}
 {% block body %}
-    <a class="btn" href="{{path('admin_event_create')}}">Ajouter un évènement</a>
+    <a class="btn btn-primary" href="{{path('admin_event_create')}}">Ajouter un évènement</a>
     <h3>Liste des évènements</h3>
     <hr>
     <table>
@@ -16,10 +16,16 @@
         <td>{{event.date | date('d/m/Y')}}</td>
         <td>{{event.title}}</td>
         <td> <textarea rows="4" cols="50">{{event.content}}</textarea></td>
-        <td>{{event.eventFiles | length}}</td>
-        <td>
-          <small><i><a href="{{ path('admin_event_update', {'id' : event.id}) }}">Modifier</a></i></small>
-          <small><i><a href="{{ path('admin_event_add_file', {'id' : event.id}) }}">Ajouter un fichier</a></i></small>
+        <td style="width:30%;">
+          {% for file in event.eventFiles %}
+            <a href="{{ asset('files/'~ file.fileName)}}" target="blanc"pdf><small><i>{{ file.name }} (PDF)</small></i></a>
+            <a href="{{path('admin_event_delete_file', {'id' : file.id})}}" style="float:right;" onclick="return confirm('Etes vous certain de vouloir supprimer ce fichier?');"><i class="fa fa-trash-o"></i></a><br>
+          {% endfor %}
+        </td>
+        <td style="width:12%">
+          <small><i><a class="btn btn-primary" href="{{ path('admin_event_update', {'id' : event.id}) }}"><i class="fa fa-pencil"></i></a></i></small>
+          <small><i><a class="btn btn-success" href="{{ path('admin_event_add_file', {'id' : event.id}) }}"><i class="fa fa-file-pdf-o"></i></a></i></small>
+          <small><i><a class="btn btn-danger" href="{{ path('admin_event_delete', {'id' : event.id}) }}" onclick="return confirm('Etes vous certain de vouloir supprimer cet événement?');"><i class="fa fa-trash-o"></i></a></i></small>
         </td>
       </tr>
 
