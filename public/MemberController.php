@@ -41,7 +41,7 @@ class MemberController extends AbstractController
       $blog_comments = $paginator->paginate(
         $data,
         $current_page = $request->query->getInt('page', 1),
-        10
+        5
       );
       return $this->render('member/blog_index.html.twig', [
         'blog_comments' => $blog_comments
@@ -69,7 +69,7 @@ class MemberController extends AbstractController
       $parameters = [
         'subject' => 'Nouveau message sur le blog',
         'content' => $blog_comment->getAuthor()->getFirstname() . " " . $blog_comment->getAuthor()->getName() ." vient de publier un nouveau post",
-        'role' => 'ROLE_MEMBER',
+        'role' => 'ROLE_ADMIN',
         'recipients' => $user_repo->findAll()
       ];
       $email_service->sendEmail($parameters);
