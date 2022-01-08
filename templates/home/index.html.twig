@@ -2,12 +2,11 @@
 
 {% block body %}
 <div class="wave-container">
-  <div id="header-logo">
+  <!-- <div id="header-logo">
     <p>SCT</p>
     <p>Surfcasting Turballais</p>
-  </div>
-  <path fill="#fff" d="…"></path>
-</svg>
+  </div> -->
+  <img id="header-logo" src="{{asset('assets/pictures/carte_voeux_2022.jpg')}}" alt="">
 </div>
 <!-- AFFICHAGE BLOG ET EVENEMENTS RESERVES AUX MEMEBRES DU CLUB -->
 {% if is_granted('ROLE_MEMBER') %}

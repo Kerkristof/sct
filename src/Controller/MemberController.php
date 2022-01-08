@@ -8,12 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use App\Repository\UserRepository;
 use App\Repository\BlogCommentRepository;
 use App\Entity\BlogComment;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\EventRepository;
-use App\Services\EmailService;
 
 /**
  * @Route("/member")
@@ -54,27 +52,14 @@ class MemberController extends AbstractController
      * @param  EntityManagerInterface $entityManager [description]
      * @return [type]                                [description]
      */
-    public function blog_post(Request $request, EntityManagerInterface $entityManager, UserRepository $user_repo,
-    EmailService $email_service)
+    public function blog_post(Request $request, EntityManagerInterface $entityManager)
     {
       $blog_comment = new BlogComment();
       $blog_comment ->setAuthor($this->getUser())
                     ->setCreatedAt(new \DateTime())
                     ->setContent($request->request->get('content'));
-
       $entityManager->persist($blog_comment);
       $entityManager->flush();
-
-      // SEND AN EMAIL TO MEMBER WHEN A NEW BLOG IS PUBLISHED
-      $parameters = [
-        'subject' => 'Nouveau message sur le blog',
-        'content' => $blog_comment->getAuthor()->getFirstname() . " " . $blog_comment->getAuthor()->getName() ." vient de publier un nouveau post",
-        'role' => 'ROLE_MEMBER',
-        'recipients' => $user_repo->findAll()
-      ];
-      $email_service->sendEmail($parameters);
-
-
       return $this->redirectToRoute('member_blog_index');
     }
     /**

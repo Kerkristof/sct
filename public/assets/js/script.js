@@ -17,4 +17,15 @@ $(document).ready(function(){
     }
   });
 
+  $('.emoji-picker').hide();
+  $('.emoji-trigger').click(function(){
+    $('.emoji-picker').toggle();
+  });
+  $('.emoji').click(function(){
+    $('.inputbox').val($('.inputbox').val() + $(this).text());
+  });
+
+  $('.btn').click(function(){
+    $(this).text('en cours');
+  });
 });

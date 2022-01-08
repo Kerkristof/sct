@@ -117,3 +117,18 @@ body{
 .footer i{
   font-size: 50px;
 }
+/* ---- EMOJI ---- */
+.emoji:hover{
+  cursor: pointer;
+}
+.emoji-trigger:hover{
+  cursor: pointer;
+}
+.emoji-picker{
+  width: 80%;
+}
+@media screen and (max-width: 768px){
+  .emoji-trigger{
+    display: none;
+  }
+}

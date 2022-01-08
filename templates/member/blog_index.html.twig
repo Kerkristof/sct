@@ -4,7 +4,8 @@
   <!-- FORMULAIRE DE COMMENTAIRE -->
   {% if app.user %}
   <form action="{{path('member_blog_post')}}" method="post">
-    <input class="form-control" placeholder="Ajouter un commentaire..."  name="content" required>
+    <input class="inputbox form-control" placeholder="Ajouter un commentaire..."  name="content" required>
+    {{include('/member/../tools/_emoji.html.twig')}}
     <button class="btn"  type="submit">Publier</button>
   </form>
   {% endif %}
