@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="restricted_container">
+  <h2>Laissez nous un message</h2>
+
+  <!-- FORMULAIRE DE CONTACT -->
+  <form action="{{path('contact_post')}}" method="post">
+    <input class="form-control" placeholder="Prénom *"  name="first_name" required>
+    <input class="form-control" placeholder="Nom *"  name="name" required>
+    <input class="form-control" placeholder="E mail *"  name="email" required>
+    <input class="form-control" placeholder="Sujet *"  name="subject" required>
+    <textarea class="form-control" placeholder="Votre message... *"  name="content" required></textarea>
+    <button class="btn"  type="submit">Envoyer</button>
+  </form>
+</div>
+
+{% endblock %}
