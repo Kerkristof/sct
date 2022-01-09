@@ -19,7 +19,7 @@
       <td>{{ msg.subject }}</td>
       <td> <textarea rows="4" cols="50">{{msg.content}}</textarea></td>
       <td>
-        <small><i><a class="btn btn-danger" href="#" onclick="return confirm('Etes vous certain de vouloir supprimer ce message?');"><i class="fa fa-trash-o"></i></a></i></small>
+        <small><i><a class="btn btn-danger" href="{{path('admin_contact_message_delete', {'id' : msg.id })}}" onclick="return confirm('Etes vous certain de vouloir supprimer ce message?');"><i class="fa fa-trash-o"></i></a></i></small>
       </td>
     </tr>
   {% endfor %}

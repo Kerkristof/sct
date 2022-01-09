@@ -5,10 +5,12 @@ namespace App\EventSubscriber;
 use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 use App\Entity\Event;
 use App\Entity\BlogComment;
+use App\Entity\ContactMessage;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use App\Services\EmailService;
 use App\Repository\UserRepository;
+use SebastianBergmann\CodeCoverage\Driver\PHPDBG;
 
 
 
@@ -44,7 +46,7 @@ class DoctrineSubscriber implements EventSubscriberInterface
       // SEND AN EMAIL TO MEMBER WHEN A NEW BLOG IS PUBLISHED
       $parameters = [
         'subject' => 'Nouveau message sur le blog',
-        'content' => $entity->getAuthor()->getFirstname() . " " . $entity->getAuthor()->getName() ." vient de publier un nouveau post",
+        'content' => $entity->getAuthor()->getFirstname() . " " . $entity->getAuthor()->getName() ." vient de publier un nouveau post https://www.surfcastingturballais.fr/login ",
         'role' => 'ROLE_MEMBER',
         'recipients' => $this->user_repo->findAll(),
       ];
@@ -54,8 +56,19 @@ class DoctrineSubscriber implements EventSubscriberInterface
       // SEND AN EMAIL TO MEMBER WHEN A NEW EVENT IS PUBLISHED
       $parameters = [
         'subject' => 'Nouvel évenement sur le site',
-        'content' => $entity->getAuthor()->getFirstname() . " " . $entity->getAuthor()->getName() ." vient de publier un nouvel événement",
+        'content' => $entity->getAuthor()->getFirstname() . " " . $entity->getAuthor()->getName() ." vient de publier un nouvel événement https://www.surfcastingturballais.fr/login ",
         'role' => 'ROLE_MEMBER',
+        'recipients' => $this->user_repo->findAll(),
+      ];
+      $this->email_service->sendEmail($parameters);
+    }
+    if ($entity instanceof ContactMessage) {
+      // SEND EMAIL TO ADMIN WHEN A CONTACTMESSAGE IS RECEIVED
+      $parameters = [
+        'subject' => 'Nouvelle demande de contact reçue',
+        'content' =>"De " . $entity->getFirstname() . " " . $entity->getName() . " / email : " .
+        $entity->getEmail() . " / message: " . $entity->getContent() . " https://www.surfcastingturballais.fr/login ",
+        'role' => 'ROLE_ADMIN',
         'recipients' => $this->user_repo->findAll(),
       ];
       $this->email_service->sendEmail($parameters);
