@@ -10,7 +10,7 @@
 
 ### ESPACE PERSONNEL###
 
-/public/brochures
+/public/assets/brochures
 /public/files
 /.env
 /.env.test
