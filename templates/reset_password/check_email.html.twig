@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Renouvellement du mot de passe{% endblock %}
+
+{% block body %}
+<div class="restricted_container">
+  <h4>
+    Si un compte est bien associé à cette adresse email, un message vous sera envoyé immédiatement. Ce message contient un lien que vous
+    pourrez utiliser pour régénérer votre mot de passe.
+    Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+  </h4>
+  <br>
+  <h4>
+    Si vous n'avez pas reçu cet email, regardez dans vos spams ou bien
+    <a href="{{ path('app_forgot_password_request') }}">essayez à nouveau</a>.
+  </h4>
+</div>
+{% endblock %}
