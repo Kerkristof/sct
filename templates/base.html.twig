@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}"/>
   <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}"/>
   <link rel="stylesheet" href="{{ asset('assets/css/card.css') }}"/>
+  <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}"/>
+  <link rel="stylesheet" href="{{ asset('assets/css/galery.css') }}"/>
   {% block stylesheets %}{% endblock %}
 </head>
 <body>
@@ -20,14 +22,20 @@
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="{{ path('home')}}">accueil</a></li>
+      <li><a href="{{ path('home')}}">ACCUEIL</a></li>
+      <li class="down-link">Le club <i class="fa fa-caret-down"></i>
+        <ul class=" down-link nav-sublinks">
+          <li><a href="{{path('activities')}}">Nos activités</a></li>
+          <li><a href="{{path('galery')}}">Galerie photos</a></li>
+        </ul>
+      </li>
       <li><a href="{{ path('useful_link')}}">Liens utiles</a></li>
       <li><a href="{{path('contact_us')}}">Contactez nous</a></li>
       {% if is_granted('ROLE_MEMBER') %}
       <li class="down-link">Espace Membres <i class="fa fa-caret-down"></i>
         <ul class=" down-link nav-sublinks">
-          <li><a href="{{ path('member_index')}}">Nos documents</li>
-          <li><a href="{{ path('member_event_index')}}">Nos événements</li>
+          <li><a href="{{ path('member_index')}}">Nos documents</a></li>
+          <li><a href="{{ path('member_event_index')}}">Nos événements</a></li>
           <li><a href="{{ path('member_blog_index')}}">Blog</a></li>
         </ul>
       </li>
@@ -57,5 +65,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="{{asset('assets/js/script.js')}}"></script>
+  <script src="{{asset('assets/js/galery.js')}}"></script>
 </footer>
 </html>

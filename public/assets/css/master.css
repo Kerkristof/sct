@@ -16,7 +16,7 @@ body{
   display:flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../../assets/pictures/plage.jpg");
+  background-image: url("../../assets/pictures/plage_03.jpg");
   background-repeat: no-repeat;
   background-size:cover;
   height:80vh;
@@ -98,25 +98,6 @@ body{
 .alert-danger{
   background-color:#e74c3c;
 }
-/* ---- FOOTER ---- */
-.footer{
-  height:15vh;
-  background-color:black;
-  display:flex;
-  align-items: center;
-}
-.footer a{
-  font-family: 'Roboto', sans-serif;
-  font-size:18px;
-  color:white;
-}
-.footer span{
-  font-size: 22px;
-  color: white;
-}
-.footer i{
-  font-size: 50px;
-}
 /* ---- EMOJI ---- */
 .emoji:hover{
   cursor: pointer;
@@ -131,4 +112,11 @@ body{
   .emoji-trigger{
     display: none;
   }
+}
+/* ---- ACTIVITIES ----  */
+.activities{
+  padding:10px 0px 10px 60px;
+  background-image: url("../../assets/pictures/plage_2.jpg");
+  background-repeat: no-repeat;
+  background-size:cover;
 }

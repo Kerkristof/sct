@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="restricted_container galery_container">
+  <!-- The grid: four columns -->
+  <div class="row">
+    <div class="column">
+      <img src="{{asset('assets/pictures/galery/dominique_01.jpg')}}" alt="Dominique Maret président du SCT avec un beau grondin" onclick="myFunction(this);">
+    </div>
+    <div class="column">
+      <img src="{{asset('assets/pictures/galery/jean-marc_01.jpg')}}" alt="Jean Marc Morel vice-président du SCT avecs un monstrueux tacaud" onclick="myFunction(this);">
+    </div>
+    <div class="column">
+      <img src="{{asset('assets/pictures/galery/christophe_01.jpg')}}" alt="Christophe Lanco secrétaire du SCT" onclick="myFunction(this);">
+    </div>
+    <div class="column">
+      <img src="{{asset('assets/pictures/galery/david_01.jpg')}}" alt="David Joly membre du SCT nous présente un joli bar" onclick="myFunction(this);">
+    </div>
+    <div class="column">
+      <img src="{{asset('assets/pictures/galery/gerard_01.jpg')}}" alt="Gérard Parré membre du SCT avec une dorade grise à Port Creux" onclick="myFunction(this);">
+    </div>
+    <div class="column">
+      <img src="{{asset('assets/pictures/galery/bernard_01.jpg')}}" alt="Bernard Juhel notre expert en bas de lignes" onclick="myFunction(this);">
+    </div>
+
+  </div>
+
+  <!-- The expanding image container -->
+  <div class="container" onclick="this.style.display='none'">
+    <!-- Close the image -->
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+
+    <!-- Expanded image -->
+    <img id="expandedImg" style="width:100%">
+
+    <!-- Image text -->
+    <div id="imgtext"></div>
+  </div>
+</div>
+{% endblock %}

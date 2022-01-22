@@ -62,4 +62,28 @@ class HomeController extends AbstractController
       $entityManager->flush();
       return $this->redirectToRoute('home');
     }
+    /**
+     * @Route("/legal_mention", name="legal_mention")
+     * @return Response [description]
+     */
+    public function legalMention(): Response
+    {
+      return $this->render('home/legal_mention.html.twig');
+    }
+    /**
+     * @Route("/activities", name="activities")
+     * @return [type] [description]
+     */
+    public function activities()
+    {
+      return $this->render('home/activities.html.twig');
+    }
+    /**
+     * @Route("/galery", name="galery")
+     * @return [type] [description]
+     */
+    public function galery()
+    {
+      return $this->render('home/galery.html.twig');
+    }
 }
