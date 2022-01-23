@@ -1,0 +1,17 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block body %}
+<div class="form">
+{{form_start(formGalery)}}
+{{form_row(formGalery.title)}}
+{{form_row(formGalery.comment)}}
+{{form_row(formGalery.imageFile)}}
+<button type="submit" class="btn btn-success">
+  {% if editMode %}
+    Enregistrer les modifications
+  {% else %}
+    Ajouter l'image
+  {% endif %}
+</button>
+{{form_end(formGalery)}}
+</div>
+{% endblock %}

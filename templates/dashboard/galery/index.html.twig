@@ -1,0 +1,31 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+<a class="btn btn-primary" href="{{path('admin_galery_create')}}">Ajouter une image</a>
+<h3>Photos de la galerie</h3>
+<hr>
+<table>
+  <tr>
+    <th>Image</th>
+    <th>Titre</th>
+    <th>Comment</th>
+    <th>ImageName</th>
+    <th>Taille</th>
+    <th>Action</th>
+  </tr>
+  {% for picture in pictures %}
+  <tr>
+    <td width="10%"><img src="{{asset('galery_pictures/' ~ picture.imageName)}}" alt="" width="100%"></td>
+    <td>{{ picture.title }}</td>
+    <td>{{ picture.comment }}</td>
+    <td>{{ picture.imageName }}</td>
+    <td>{{ picture.imageSize}}</td>
+    <td width="80px">
+      <small><i><a class="btn btn-primary" href="{{path('admin_galery_update', {'id' : picture.id })}}"><i class="fa fa-pencil"></i></a></i></small>
+      <small><i><a class="btn btn-danger" href="{{path('admin_galery_delete', {'id' : picture.id })}}" onclick="return confirm('Etes vous certain de vouloir supprimer cette image?');"><i class="fa fa-trash-o"></i></a></i></small>
+    </td>
+  </tr>
+
+  {% endfor %}
+</table>
+{% endblock %}

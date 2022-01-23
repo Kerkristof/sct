@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
 use App\Repository\EventRepository;
 use App\Repository\BlogCommentRepository;
+use App\Repository\GaleryPictureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\ContactMessage;
 
@@ -82,8 +83,11 @@ class HomeController extends AbstractController
      * @Route("/galery", name="galery")
      * @return [type] [description]
      */
-    public function galery()
+    public function galery(GaleryPictureRepository $repo)
     {
-      return $this->render('home/galery.html.twig');
+      $pictures = $repo->findAll();
+      return $this->render('home/galery.html.twig', [
+        'pictures' => $pictures
+      ]);
     }
 }
