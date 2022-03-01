@@ -1,0 +1,17 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+
+{{form_start(formTag)}}
+{{ form_row(formTag.label, { 'label' : "Label", 'attr' : {'placeholder' : "tag...", 'class':'form-control'}}) }}
+<br>
+<button type="submit" class="btn btn-success">
+  {% if editMode %}
+  Enregistrer les modifications
+  {% else %}
+  Ajouter le tag
+  {% endif %}
+</button>
+{{form_end(formTag)}}
+
+{% endblock %}

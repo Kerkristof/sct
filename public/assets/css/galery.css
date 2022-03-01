@@ -1,9 +1,10 @@
 .galery_container{
   position: relative;
+  display:flex;
+  flex-wrap: wrap;
 }
 /* The grid: Four equal columns that floats next to each other */
 .column {
-  float: left;
   width: 10%;
   padding: 10px;
 }
@@ -19,15 +20,9 @@
   opacity: 1;
 }
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 /* The expanding image container (positioning is needed to position the close button and the text) */
 .container {
+  z-index: 1;
   position: absolute;
   top:0;
   left:30%;
@@ -63,10 +58,18 @@
   font-size: 35px;
   cursor: pointer;
 }
+.tag{
+  display: inline-block;
+  background-color:#0a3d62;
+  color:white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
 @media screen and (max-width: 1024px){
   .container{
-    left:10%;
-    width:80%;
+    left: -10%;
+    width:120%;
     border:1px solid blue;
     padding:5px;
   }
@@ -77,5 +80,8 @@
   }
   #imgtext {
     font-size: 12px;
+  }
+  .tag{
+    font-size: 10px;
   }
 }

@@ -52,7 +52,16 @@
 {% endif %}
 
 <div class="footer">
-  <p><a href="https://www.facebook.com/groups/962506810816597" target="_blank"> <i class="footer-icon fa fa-facebook-square"></i></a></p>
-  <p><a href="{{path('legal_mention')}}">Mentions légales</a><br></p>
+  <a href="https://www.facebook.com/groups/962506810816597" target="_blank">Rejoignez nous sur FaceBook <i class="fa fa-facebook-square"></i></a>
+  <div>
+    <p>CONTACTEZ NOUS:</p>
+    <p>Email: surfcastingturballais@outlook.fr</p>
+    <p><a href="{{path('contact_us')}}">Formulaire de demande de renseignements</a></p>
+  </div>
+  <div>
+    <p><a href="{{path('legal_mention')}}">Mentions légales</a><br></p>
+    <p><a href="{{path('general_condition')}}">Conditions générales d'utilisation</a></p>
+    <p><a href="{{path('personal_data_policy')}}">Politique de confidentialité</a></p>
+  </div>
 </div>
 {% endblock %}

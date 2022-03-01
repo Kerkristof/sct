@@ -6,21 +6,50 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
 use App\Repository\EventRepository;
 use App\Repository\BlogCommentRepository;
-use App\Repository\GaleryPictureRepository;
+use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\ContactMessage;
+use App\Entity\Statistic;
+use App\Repository\StatisticRepository;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
      */
-    public function index(BlogCommentRepository $blog_repo, EventRepository $event_repo): Response
+    public function index(BlogCommentRepository $blog_repo, EventRepository $event_repo, Request $request,
+    EntityManagerInterface $manager, StatisticRepository $statistic_repo): Response
     {
+      // get ip adress from client
+      $ip_adress = $request->getClientIp();
+      // check if this ip adress already exists in DB
+      $statistic = $statistic_repo->findOneBy(['ip_adress' => $ip_adress]);
+      $today = new \DateTime();
+      // if ip adress already exists in DB AND if lastLog is inf at today => count is increased by 1 and lastLog is updated at today
+      if ($statistic)
+      {
+        if (intval(date_diff($today, $statistic->getLastLog())->format('%d')) > 0)
+        {
+          $statistic->setLastLog($today)
+                    ->setLogCount($statistic->getLogCount() + 1);
+          $manager->persist($statistic);
+          $manager->flush($statistic);
+        }
+      }
+      // if ip adress is new. A new statistic entity is ceated.
+      else
+      {
+        $statistic = new Statistic;
+        $statistic->setIpAdress($ip_adress)
+        ->setLastLog(new \DateTime())
+        ->setLogCount(1);
+        $manager->persist($statistic);
+        $manager->flush($statistic);
+      }
+
       $events = $event_repo->findBy([], ['date' => 'DESC'], 20);
       $last_blog_comments = $blog_repo->findBy([],['createdAt' => 'DESC'], 5);
       return $this->render('home/index.html.twig', [
@@ -72,6 +101,22 @@ class HomeController extends AbstractController
       return $this->render('home/legal_mention.html.twig');
     }
     /**
+     * @Route("/general_condition", name="general_condition")
+     * @return Response [description]
+     */
+    public function generalCondition(): Response
+    {
+      return $this->render('home/general_condition.html.twig');
+    }
+    /**
+     * @Route("/personal_data_policy", name="personal_data_policy")
+     * @return Response [description]
+     */
+    public function personalDataPolicy(): Response
+    {
+      return $this->render('home/personal_data_policy.html.twig');
+    }
+    /**
      * @Route("/activities", name="activities")
      * @return [type] [description]
      */
@@ -83,11 +128,11 @@ class HomeController extends AbstractController
      * @Route("/galery", name="galery")
      * @return [type] [description]
      */
-    public function galery(GaleryPictureRepository $repo)
+    public function galery(TagRepository $repo)
     {
-      $pictures = $repo->findAll();
+      $tags = $repo->findAll();
       return $this->render('home/galery.html.twig', [
-        'pictures' => $pictures
+        'tags' => $tags
       ]);
     }
 }

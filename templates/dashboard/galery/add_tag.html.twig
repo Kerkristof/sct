@@ -1,0 +1,9 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+<div class="restricted_container">
+{% for tag in tags %}
+  <a class="tag" href="{{path('admin_galery_add_tag', {'id' : galery_picture.id, 'tag_id' : tag.id})}}">{{tag.label}}</a>
+{% endfor %}
+</div>
+{% endblock %}

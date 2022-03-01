@@ -9,6 +9,7 @@
   <body>
     <div class="dashboard-header">
       <h1>Dashboard</h1>
+      <h4>Nombre de visteurs: {{logs}}</h4>
     </div>
     <div class="dashboard-core">
       <div class="nav-bar">
@@ -21,6 +22,7 @@
           <a href="{{path('admin_event_index')}}"><i class="fa fa-calendar" style="font-size:25px;color:gray;"></i> Evénements</a>
           <a href="{{path('admin_contact_message_index')}}"><i class="fa fa-envelope-o" style="font-size:25px;color:gray;"></i> Messages</a>
           <a href="{{path('admin_galery_index')}}"><i class="fa fa-picture-o" style="font-size:25px;color:gray;"></i> Galerie</a>
+          <a href="{{path('admin_tag_index')}}"><i class="fa fa-tags" style="font-size:25px;color:gray;"></i> Tag</a>
           <a href="{{path('home')}}"><i class="fa fa-times" style="font-size:25px;color:gray;"></i> Quitter</a>
         </div>
       </div>

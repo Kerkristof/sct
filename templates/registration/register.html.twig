@@ -19,7 +19,14 @@
     {{ form_row(registrationForm.name)}}
     {{ form_row(registrationForm.email) }}
     {{ form_row(registrationForm.password) }}
-  {{ form_row(registrationForm.agreeTerms)}}
+    <div>
+      <div style="float : left; margin-right : 15px">
+        {{ form_row(registrationForm.agreeTerms, { 'label' : "J'accepte les CGU " })}}
+      </div>
+      <div style="float : left">
+        <a style ="font-size : 20px;" href="{{path('general_condition')}}"><i class="fa fa-question-circle"></i></a>
+      </div>
+    </div>
   <button type="submit" class="btn">Valider</button>
   {{ form_end(registrationForm) }}
 </div>

@@ -1,0 +1,29 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+
+<div class="resctrided_container">
+  <a class="btn btn-primary" href="{{path('admin_tag_create')}}">Créer un tag</a>
+  <h3>Liste des tags</h3>
+  <hr>
+
+  <table>
+    <tr>
+      <th>Label</th>
+      <th>Actions</th>
+    </tr>
+    {% for tag in tags %}
+    <tr>
+      <td>
+        <span class="tag">{{tag.label}}</span>
+      </td>
+      <td>
+        <small><i><a class="btn btn-primary" href="{{ path('admin_tag_update', {'id' : tag.id}) }}"><i class="fa fa-pencil"></i></a></i></small>
+        <small><i><a class="btn btn-danger" href="{{ path('admin_tag_delete', {'id' : tag.id}) }}" onclick="return confirm('Etes vous certain de vouloir supprimer cet tag?');"><i class="fa fa-trash-o"></i></a></i></small>
+
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

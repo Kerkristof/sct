@@ -1,17 +1,27 @@
 .footer{
+  padding:10px 30px;
   display:flex;
   justify-content:space-around;
-  align-items: center;
-  height:10vh;
+  height:auto;
   background-color:black;
   width:100%;
-
 }
-.footer a{
-  font-family: 'Roboto', sans-serif;
-  font-size:18px;
+.footer a, .footer p{
+  font-family:monospace;
+  font-size:16px;
   color:white;
 }
-.footer-icon{
-  font-size: 40px;
+.footer i{
+  font-size:30px;
+}
+@media screen and (max-width:768px){
+  .footer{
+    height:auto;
+  }
+  .footer a, .footer p{
+    font-size: 10px;
+  }
+  .footer i{
+    font-size:15px;
+  }
 }

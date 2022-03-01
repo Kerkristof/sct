@@ -8,6 +8,7 @@
   <tr>
     <th>Image</th>
     <th>Titre</th>
+    <th>Tags</th>
     <th>Comment</th>
     <th>ImageName</th>
     <th>Taille</th>
@@ -17,10 +18,16 @@
   <tr>
     <td width="10%"><img src="{{asset('galery_pictures/' ~ picture.imageName)}}" alt="" width="100%"></td>
     <td>{{ picture.title }}</td>
+    <td width="150px">
+      {% for tag in picture.tags %}
+        <small class="tag">{{tag.label}}<a href="{{path('admin_galery_remove_tag', {'tag' : tag.id, 'id' : picture.id })}}"> <i class="fa fa-trash-o"></i></a></small><br><br>
+      {% endfor %}
+    </td>
     <td>{{ picture.comment }}</td>
     <td>{{ picture.imageName }}</td>
     <td>{{ picture.imageSize}}</td>
-    <td width="80px">
+    <td width="100px">
+      <small><i><a class="btn btn-success" href="{{path('admin_galery_add_tag', {'id' : picture.id })}}"><i class="fa fa-tags"></i></a></i></small>
       <small><i><a class="btn btn-primary" href="{{path('admin_galery_update', {'id' : picture.id })}}"><i class="fa fa-pencil"></i></a></i></small>
       <small><i><a class="btn btn-danger" href="{{path('admin_galery_delete', {'id' : picture.id })}}" onclick="return confirm('Etes vous certain de vouloir supprimer cette image?');"><i class="fa fa-trash-o"></i></a></i></small>
     </td>
