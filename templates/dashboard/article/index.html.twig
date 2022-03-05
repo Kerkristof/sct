@@ -1,0 +1,33 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block body %}
+<a class="btn btn-primary" href="{{path('admin_article_create')}}">Créer un article</a>
+<h3>Articles</h3>
+<hr>
+<table>
+  <tr>
+    <th>Titre de l'article</th>
+    <th>Date</th>
+    <th>Online</th>
+    <th>Auteur</th>
+    <th>Actions</th>
+  </tr>
+  {% for article in articles %}
+  <tr>
+    <td>{{ article.title}}</td>
+    <td>{{ article.createdAt | date('d/m/Y')}}</td>
+      {% if article.online %}
+      <td style ="color:red;"><strong>On line</strong></td>
+        {% else %}
+        <td>Off line</td>
+      {% endif %}
+    <td>{{ article.author.firstname }} {{ article.author.name}}</td>
+    <td>
+      <small><i><a class="btn btn-primary" href="{{ path('admin_article_update', {'id' : article.id}) }}"><i class="fa fa-pencil"></i></a></i></small>
+      <small><i><a class="btn btn-success" href="{{ path('admin_article_show' , {'id' : article.id})}}"><i class="fa fa-eye"></i></a></i></small>
+      <small><i><a class="btn btn-danger" href="{{ path('admin_article_delete' , {'id' : article.id})}}" onclick="return confirm('Etes vous certain de vouloir supprimer cet article?');"><i class="fa fa-trash-o"></i></a></i></small>
+    </td>
+
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

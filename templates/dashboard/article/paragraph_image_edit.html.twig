@@ -1,0 +1,12 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+{{ form_start(formParagraphImage)}}
+{{ form_row(formParagraphImage.title)}}
+{{ form_row(formParagraphImage.imageFile)}}
+<button type="submit" class="btn btn-success">Ajouter</button>
+{{ form_end(formParagraphImage)}}
+
+
+
+{% endblock %}

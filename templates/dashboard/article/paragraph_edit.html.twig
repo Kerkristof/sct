@@ -1,0 +1,17 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block body %}
+<div class="form">
+  {{ form_start(formParagraph)}}
+  {{ form_row(formParagraph.title, {'label' : "Titre du paragraphe", 'attr' : {'class' : 'form-control' }})}}
+  {{ form_row(formParagraph.content, {'label' : "Contenu du paragraphe" , 'attr' : {'class' : 'form-control' }})}}
+  <br>
+  <button type="submit" class="btn btn-success">
+    {% if editMode %}
+    Enregistrer les modifications
+    {% else %}
+    Ajouter le paragraphe
+    {% endif %}
+  </button>
+  {{ form_end(formParagraph)}}
+</div>
+{% endblock %}

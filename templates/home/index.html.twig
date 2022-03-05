@@ -8,48 +8,30 @@
   </div>
   <!-- <img id="header-logo" src="{{asset('assets/pictures/carte_voeux_2022.jpg')}}" alt=""> -->
 </div>
-<!-- AFFICHAGE BLOG ET EVENEMENTS RESERVES AUX MEMEBRES DU CLUB -->
-{% if is_granted('ROLE_MEMBER') %}
-<!-- AFFICHAGE 5 DERNIERS MESSAGES DU BLOG SUR LA PAGE D ACCUEIL -->
-  <div class="restricted_container">
-    <h2>Les dernières nouvelles du front</h2>
-    <br>
-    {% for comment in blog_comments %}
-    <i><small>De <strong>{{comment.author.firstname}} {{comment.author.name}}</strong>
-      le {{comment.createdAt | date('d/m/Y à H:i')}}</small></i>
-      <p>{{comment.content}}</p>
-      <br>
-    {% endfor%}
-    <br>
-    <small><i><a class="btn"href="{{ path('member_blog_index')}}">Accéder au blog</a></i></small>
-  </div>
-<!-- AFFICHAGE DES EVENEMENTS A VENIR SUR LA PAGE D ACCUEIL -->
-  <div class="restricted_container">
-    <h2>Nos événements à venir</h2>
-    {% for event in events %}
-      {% if event.date > date() %}
-        <div class="card">
-          <div class="card-header">
-            <h4><i><small><span style="color:red">A VENIR </span></small>Le {{event.date | date('d/m/Y')}}</i></h4>
-            <h3>{{ event.title}}</h3>
-          </div>
-          <div class="card-main">
-            <p>{{event.content}}</p><br>
-            {% for file in event.eventFiles %}
-            <a href="{{ asset('/files/'~ file.fileName)}}" target="blanc"pdf><small><i>{{ file.name }} (PDF)</small></i></a><br>
-            {% endfor %}
-          </div>
-          <div class="card-footer">
-            <p>Créé le {{event.createdAt | date('d/m/Y')}} par {{event.author.firstname}} {{event.author.name}}</p>
-            <p>Mis à jour le {{event.updatedAt | date('d/m/Y')}}</p>
-          </div>
+
+<!-- AFFICHAGE DES ARTICLES online -->
+<div class="article-container restricted_container">
+  {% for article in online_articles %}
+  <div class="article">
+    <div class="article-header">
+      <h2>{{article.title}}</h2>
+      <h5><i><span><i class="fa fw fa-calendar-o"></i></span> {{article.createdAt | date('d/m/Y')}} Publié par {{article.author.firstname}} {{article.author.name }}</i></h5>
+    </div>
+    <div class="article-main">
+      {% for paragraph in article.paragraphs %}
+        <h4>{{ paragraph.title }}</h4>
+        <p>{{ paragraph.content}}</p>
+        <div class="paragraph-image">
+          {% for image in paragraph.paragraphImages %}
+          <img src="{{asset('paragraph_images/' ~ image.imageName)}}" alt="" width="100%">
+          {% endfor %}
         </div>
-      {% endif %}
-    {% endfor %}
-    <br>
-    <small><i><a class="btn"href="{{ path('member_event_index')}}">Voir tous les événements</a></i></small>
+      {% endfor %}
+    </div>
   </div>
-{% endif %}
+  {% endfor %}
+</div>
+
 
 <div class="footer">
   <a href="https://www.facebook.com/groups/962506810816597" target="_blank">Rejoignez nous sur FaceBook <i class="fa fa-facebook-square"></i></a>

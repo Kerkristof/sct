@@ -19,9 +19,6 @@
   padding:10px;
   overflow-y: auto;
 }
-.card-main p{
-  float:left;
-}
 .card-footer{
   text-align:left;
   background-color:#0a3d62;

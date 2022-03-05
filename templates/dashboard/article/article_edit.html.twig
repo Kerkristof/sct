@@ -1,0 +1,17 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block body %}
+<div class="form">
+  {{ form_start(formArticle)}}
+  {{ form_row(formArticle.title, {'label' : "Titre de l'article", 'attr' : {'class' : 'form-control' }})}}
+  {{ form_row(formArticle.online, {'label' : "Online"})}}
+  <br>
+  <button type="submit" class="btn btn-success">
+    {% if editMode %}
+    Enregistrer les modifications
+    {% else %}
+    Ajouter l'article
+    {% endif %}
+  </button>
+  {{ form_end(formArticle)}}
+</div>
+{% endblock %}

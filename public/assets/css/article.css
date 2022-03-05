@@ -1,0 +1,31 @@
+.article{
+  /* border:1px solid; */
+  margin-top: 20px;
+  width:90%;
+  margin-left: 5%;
+}
+.article-header{
+  text-align: center;
+  color: darkblue;
+}
+.article-header h2{
+  letter-spacing: 2px;
+}
+.article-container{
+  min-height: 40vh;
+}
+.article-main h4{
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 15px;
+  color: #636664;
+}
+.article-main p{
+  line-height: 15px;
+  letter-spacing: 1px;
+  color: #252625;
+}
+.paragraph-image{
+  width:60%;
+  margin-left: 20%;
+}

@@ -14,13 +14,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\ContactMessage;
 use App\Entity\Statistic;
 use App\Repository\StatisticRepository;
+use App\Repository\ArticleRepository;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
      */
-    public function index(BlogCommentRepository $blog_repo, EventRepository $event_repo, Request $request,
+    public function index(ArticleRepository $article_repo, Request $request,
     EntityManagerInterface $manager, StatisticRepository $statistic_repo): Response
     {
       // get ip adress from client
@@ -49,12 +50,9 @@ class HomeController extends AbstractController
         $manager->persist($statistic);
         $manager->flush($statistic);
       }
-
-      $events = $event_repo->findBy([], ['date' => 'DESC'], 20);
-      $last_blog_comments = $blog_repo->findBy([],['createdAt' => 'DESC'], 5);
+      $online_articles = $article_repo->findBy(['online'=>true]);
       return $this->render('home/index.html.twig', [
-          'blog_comments' => $last_blog_comments,
-          'events' => $events
+          'online_articles' => $online_articles
       ]);
     }
     /**
