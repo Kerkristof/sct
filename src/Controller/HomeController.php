@@ -15,6 +15,7 @@ use App\Entity\ContactMessage;
 use App\Entity\Statistic;
 use App\Repository\StatisticRepository;
 use App\Repository\ArticleRepository;
+use App\Repository\SponsorRepository;
 
 class HomeController extends AbstractController
 {
@@ -131,6 +132,18 @@ class HomeController extends AbstractController
       $tags = $repo->findAll();
       return $this->render('home/galery.html.twig', [
         'tags' => $tags
+      ]);
+    }
+    /**
+    * @Route("/sponsor", name="sponsor")
+     * @param  SponsorRepository $repo [description]
+     * @return [type]                  [description]
+     */
+    public function sponsor(SponsorRepository $repo)
+    {
+      $ponsors = $repo->findBy(['active'=>true]);
+      return $this->render('home/sponsor.html.twig', [
+        'sponsors' => $ponsors
       ]);
     }
 }

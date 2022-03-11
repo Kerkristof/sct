@@ -7,7 +7,7 @@
     {% for picture in tag.galeryPictures %}
     <div class="column">
       <img src="{{asset('galery_pictures/' ~ picture.imageName)}}" alt="{{picture.comment}} {% for tag in picture.tags %}
-      {{tag.label}}
+      {{tag.label}}>
       {% endfor %}" onclick="myFunction(this);">
     </div>
     <!-- The expanding image container -->

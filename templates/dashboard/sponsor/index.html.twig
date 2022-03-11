@@ -1,0 +1,38 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block body %}
+<h1>Index</h1>
+<a class="btn btn-primary" href="{{path('admin_sponsor_create')}}">Ajouter un sponsor</a>
+<h3>Articles</h3>
+<hr>
+<table>
+  <tr>
+    <th>Logo</th>
+    <th>Nom du sponsor</th>
+    <th>Adresse</th>
+    <th>Email</th>
+    <th>Téléphone</th>
+    <th>Actif</th>
+    <th>Actions</th>
+  </tr>
+  {% for sponsor in sponsors %}
+  <tr>
+    <td width="10%"><img src="{{asset('sponsor_images/' ~ sponsor.imageName)}}" alt="" width="100%"></td>
+    <td>{{ sponsor.title}}</td>
+    <td>{{ sponsor.adress}}</td>
+    <td>{{ sponsor.email}}</td>
+    <td>{{ sponsor.phone}}</td>
+      {% if sponsor.active %}
+      <td style ="color:red;"><strong>Actif</strong></td>
+        {% else %}
+        <td>Inactif</td>
+      {% endif %}
+    <td>
+      <small><i><a class="btn btn-primary" href="{{ path('admin_sponsor_update', {'id' : sponsor.id}) }}"><i class="fa fa-pencil"></i></a></i></small>
+      <small><i><a class="btn btn-danger" href="{{path('admin_sponsor_delete', {'id': sponsor.id})}}" onclick="return confirm('Etes vous certain de vouloir supprimer ce sponsor?');"><i class="fa fa-trash-o"></i></a></i></small>
+    </td>
+
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

@@ -11,10 +11,18 @@ vich_uploader:
            delete_on_update: true
            delete_on_remove: true
 
-           
        paragraph_image:
            uri_prefix: /paragraph_images
            upload_destination: '%kernel.project_dir%/public/paragraph_images'
+           namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+           inject_on_load: false
+           delete_on_update: true
+           delete_on_remove: true
+
+       sponsor:
+           uri_prefix: /sponsor_images
+           upload_destination: '%kernel.project_dir%/public/sponsor_images'
            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
            inject_on_load: false

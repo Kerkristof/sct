@@ -2,30 +2,22 @@
 
 namespace App\Form;
 
-use App\Entity\GaleryPicture;
+use App\Entity\Sponsor;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class GaleryPictureType extends AbstractType
+class SponsorType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class, [
-              'label' => 'Titre',
-              'attr' => [
-                'class' => 'form-control'
-              ]
-            ])
-            ->add('comment', TextType::class, [
-              'label' => 'Commentaire',
-              'attr' => [
-                'class' => 'form-control'
-              ]
-            ])
+            ->add('title')
+            ->add('adress')
+            ->add('email')
+            ->add('phone')
+            ->add('active')
             ->add('imageFile', FileType::class, [
               'label' => 'Image',
               'required' => false,
@@ -39,7 +31,7 @@ class GaleryPictureType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => GaleryPicture::class,
+            'data_class' => Sponsor::class,
         ]);
     }
 }

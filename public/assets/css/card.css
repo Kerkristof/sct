@@ -13,9 +13,14 @@
   padding:10px;
 }
 .card-main{
-  text-align:left;
   background-color:#f0f4f5;
   height:20vh;
+  padding:10px;
+  overflow-y: auto;
+}
+.card-main-sponsor{
+  background-color:#f0f4f5;
+  height:30vh;
   padding:10px;
   overflow-y: auto;
 }

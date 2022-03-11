@@ -1,0 +1,22 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+<div class="form">
+{{form_start(formSponsor)}}
+{{form_row(formSponsor.title, { 'label' : "Nom du sponsor", 'attr' : {'class':'form-control'}})}}
+{{form_row(formSponsor.adress, { 'label' : "Adresse postale", 'attr' : {'class':'form-control'}})}}
+{{form_row(formSponsor.email, { 'label' : "Adresse électronique", 'attr' : {'class':'form-control'}})}}
+{{form_row(formSponsor.phone, { 'label' : "Numéro de téléphone", 'attr' : {'class':'form-control'}})}}
+{{form_row(formSponsor.active, { 'label' : "Actif"})}}
+{{form_row(formSponsor.imageFile, { 'label' : "Logo" })}}
+<button type="submit" class="btn btn-success">
+  {% if editMode %}
+    Enregistrer les modifications
+  {% else %}
+    Ajouter le sponsor
+  {% endif %}
+</button>
+{{form_end(formSponsor)}}
+</div>
+
+{% endblock %}
