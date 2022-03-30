@@ -1,36 +1,39 @@
-.galery_container{
-  position: relative;
-  display:flex;
-  flex-wrap: wrap;
+/* Clear floats after the galery-contaainer */
+.galery-container:after {
+  content: "";
+  display: table;
+  clear: left;
 }
-/* The grid: Four equal columns that floats next to each other */
-.column {
-  width: 10%;
+.box {
   padding: 10px;
+  float: left;
+  height:30vh;
 }
-
-/* Style the images inside the grid */
-.column img {
-  width: 100%;
+.box img {
+  height: 100%;
   opacity: 0.8;
   cursor: pointer;
 }
 
-.column img:hover {
+.box img:hover {
   opacity: 1;
 }
 
 /* The expanding image container (positioning is needed to position the close button and the text) */
 .container {
   z-index: 1;
-  position: absolute;
-  top:0;
-  left:30%;
-  width: 40%;
+  position: fixed;
+  top:110px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 80vh;
   display: none;
   border:3px solid blue;
   padding:10px;
   background-color:lightgray;
+}
+.container img{
+  height:100%;
 }
 
 /* Expanding image text */
@@ -67,16 +70,14 @@
   font-size: 14px;
 }
 @media screen and (max-width: 1024px){
+  .box{
+    padding: 5px;
+    height:10vh;
+  }
   .container{
-    left: -10%;
-    width:120%;
+    height: 35vh;
     border:1px solid blue;
     padding:5px;
-  }
-  .column {
-    float: left;
-    width: 20%;
-    padding: 5px;
   }
   #imgtext {
     font-size: 12px;

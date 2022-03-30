@@ -3,27 +3,28 @@
 <div class="restricted_container">
   {% for tag in tags %}
   <h3 class="tag">{{tag.label}}</h3>
-  <div class="galery_container">
+  <div class="galery-container">
     {% for picture in tag.galeryPictures %}
-    <div class="column">
+    <div class="box">
       <img src="{{asset('galery_pictures/' ~ picture.imageName)}}" alt="{{picture.comment}} {% for tag in picture.tags %}
-      {{tag.label}}>
-      {% endfor %}" onclick="myFunction(this);">
-    </div>
-    <!-- The expanding image container -->
-    <div class="container" onclick="this.style.display='none'">
-      <!-- Close the image -->
-      <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
-
-      <!-- Expanded image -->
-      <img id="expandedImg" style="width:100%">
-
-      <!-- Image text -->
-      <div id="imgtext"></div>
+      {{tag.label}}
+      {% endfor %}" class="image">
     </div>
     {% endfor %}
   </div>
   {% endfor %}
 
+
+  <!-- The expanding image container -->
+  <div class="container">
+    <!-- Close the image -->
+    <span  class="closebtn">&times;</span>
+
+    <!-- Expanded image -->
+    <img id="expandedImg">
+
+    <!-- Image text -->
+    <div id="imgtext"></div>
+  </div>
 </div>
 {% endblock %}

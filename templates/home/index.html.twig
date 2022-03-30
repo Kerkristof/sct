@@ -14,16 +14,18 @@
   {% for article in online_articles %}
   <div class="article">
     <div class="article-header">
-      <h2>{{article.title}}</h2>
+      <h2>{{article.title}}</h2><br>
       <h5><i><span><i class="fa fw fa-calendar-o"></i></span> {{article.createdAt | date('d/m/Y')}} Publié par {{article.author.firstname}} {{article.author.name }}</i></h5>
     </div>
     <div class="article-main">
       {% for paragraph in article.paragraphs %}
-        <h4>{{ paragraph.title }}</h4>
+        <h4 style="margin-bottom:20px;">{{ paragraph.title }}</h4>
         <p>{{ paragraph.content}}</p>
-        <div class="paragraph-image">
+
+
+        <div class="paragraph-image" >
           {% for image in paragraph.paragraphImages %}
-          <img src="{{asset('paragraph_images/' ~ image.imageName)}}" alt="" width="100%">
+            <img src="{{asset('paragraph_images/' ~ image.imageName)}}" alt="{{image.imageName}}" width="100%">
           {% endfor %}
         </div>
       {% endfor %}

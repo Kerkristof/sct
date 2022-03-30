@@ -2,16 +2,21 @@
 {% block body %}
 <div class="restricted_container">
   <h1>Nos sponsors & partenaires</h1>
-  {% for sponsor in sponsors %}
-  <div class="card">
-    <div class="card-main-sponsor">
-      <img src="{{asset('sponsor_images/' ~ sponsor.imageName)}}" alt="{{sponsor.title}}">
-    </div>
-    <div class="card-footer">
-      <p>{{ sponsor.title}}</p>
-      <p>{{ sponsor.adress}}</p>
-    </div>
+  <div class="galery-container">
+    {% for sponsor in sponsors %}
+      <div class="box">
+        <img src="{{asset('sponsor_images/' ~ sponsor.imageName)}}"
+        alt="{{sponsor.title}}" class="image">
+      </div>
+    {% endfor %}
   </div>
-  {% endfor %}
+  <!-- The expanding image container -->
+  <div class="container">
+    <!-- Close the image -->
+    <span  class="closebtn">&times;</span>
+
+    <!-- Expanded image -->
+    <img id="expandedImg">
+  </div>
 </div>
 {% endblock %}
