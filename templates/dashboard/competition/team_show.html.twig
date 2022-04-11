@@ -1,0 +1,32 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block body %}
+<p>Équipe id: {{team.id}}</p>
+<table>
+  <tr>
+    <th>Prénom</th>
+    <th>Nom</th>
+    <th>Adresse</th>
+    <th>Code postal</th>
+    <th>Ville</th>
+    <th>N° téléphone</th>
+    <th>Email</th>
+    <th>Actions</th>
+  </tr>
+{% for elem in team.competitors %}
+<tr>
+  <td>{{ elem.firstname }}</td>
+  <td>{{ elem.name }}</td>
+  <td>{{ elem.adress }}</td>
+  <td>{{ elem.postalCode }}</td>
+  <td>{{ elem.town}}</td>
+  <td>{{ elem.phone }}</td>
+  <td>{{ elem.email }}</td>
+  <td>
+    <a class="btn btn-primary" href="{{path('admin_competitor_update', {'id' : elem.id })}}"><i class="fa fa-pencil"></i></a>
+  </td>
+</tr>
+{% endfor %}
+</table>
+<br>
+<a class="btn btn-success" href="{{path('admin_team_validation', {'id' : team.id})}}">Valider cette équipe</a>
+{% endblock %}

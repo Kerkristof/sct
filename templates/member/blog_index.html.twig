@@ -6,7 +6,7 @@
   <form action="{{path('member_blog_post')}}" method="post">
     <input class="inputbox form-control" placeholder="Ajouter un commentaire..."  name="content" required>
     {{include('/member/../tools/_emoji.html.twig')}}
-    <button class="btn"  type="submit">Publier</button>
+    <button class="btn btn-primary"  type="submit">Publier</button>
   </form>
   {% endif %}
 </div>

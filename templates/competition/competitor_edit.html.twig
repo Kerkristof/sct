@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="login-container">
+  <div class="login-header">
+    <div class="col-20">
+      <img src="{{asset("assets/pictures/logo_club_removebg.png")}}" class="logo_formulaire" alt="forks">
+    </div>
+    <div class="col-80">
+      <h2>Enregistrement du concurrent N° {{registred + 1}}</h2>
+      <br>
+      <h3><i>{{competition.title}}</i></h3>
+      <br><br>
+    </div>
+  </div>
+  <hr>
+  {{ form_start(formCompetitor)}}
+  {{ form_row(formCompetitor.firstname)}}
+  {{ form_row(formCompetitor.name)}}
+  {{ form_row(formCompetitor.email)}}
+  {{ form_row(formCompetitor.phone)}}
+  {{ form_row(formCompetitor.adress)}}
+  {{ form_row(formCompetitor.postal_code)}}
+  {{ form_row(formCompetitor.town)}}
+  <br>
+  <button type="submit" class="btn btn-success">
+    {% if editMode %}
+    Enregistrer les modifications
+    {% else %}
+    Ajouter le concurrent N° {{ registred + 1}}
+    {% endif %}
+  </button>
+  {{ form_end(formCompetitor)}}
+</div>
+{% endblock %}

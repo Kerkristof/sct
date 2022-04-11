@@ -1,0 +1,41 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block body %}
+
+<h1>"{{competition.title}}"</h1>
+<table>
+  <tr>
+    <tr>
+      <th>Date d'inscription</th>
+      {% for i in 1 .. competition.teamSize  %}
+      <th>Concurrent n°{{i}}</th>
+      {% endfor %}
+      <th>Validation</th>
+      <th>Action</th>
+    </tr>
+  </tr>
+  {% for team in competition.teams %}
+  <tr>
+    <td>{{ team.createdAt | date('d/m/Y à H:i')}}</td>
+    {% for i in 1 .. competition.teamSize %}
+      {% if loop.index0 < team.competitors | length %}
+        <td>{{team.competitors[loop.index0].firstname}} {{team.competitors[loop.index0].name}}</td>
+      {% else %}
+        <td style="color:red; font-weight:bold;">manquant</td>
+      {% endif %}
+    {% endfor %}
+    <td>
+      {% if team.active %}
+      <i class="fa fa-check"></i>
+      {% else %}
+      <i class="fa fa-hourglass-start">
+      {% endif %}
+    </td>
+    <td>
+      <small><i><a class="btn btn-success" href="{{ path('admin_team_show', {'id' : team.id}) }}" ><i class="fa fa-eye"></i></a></i></small>
+      <small><i><a class="btn btn-danger" href="{{ path('admin_team_delete', {'id' : team.id}) }}" onclick="return confirm('Etes vous certain de vouloir supprimer cette équipe?');"><i class="fa fa-trash-o"></i></a></i></small>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

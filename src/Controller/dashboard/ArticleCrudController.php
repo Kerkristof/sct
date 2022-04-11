@@ -45,7 +45,7 @@ class ArticleCrudController extends AbstractController
     {
       if (!$article) {
         $article = new Article;
-        $article->setAuthor($this->getUser())// dd($article);
+        $article->setAuthor($this->getUser())
                 ->setCreatedAt(new \DateTime());
       }
       $form = $this->createForm(ArticleType::class, $article);

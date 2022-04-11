@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}"/>
   <link rel="stylesheet" href="{{ asset('assets/css/galery.css') }}"/>
   <link rel="stylesheet" href="{{ asset('assets/css/article.css') }}"/>
+  <link rel="stylesheet" href="{{ asset('assets/css/table.css') }}"/>
   {% block stylesheets %}{% endblock %}
 </head>
 <body>
@@ -26,6 +27,7 @@
       <li><a href="{{ path('home')}}">ACCUEIL</a></li>
       <li class="down-link">Le club <i class="fa fa-caret-down"></i>
         <ul class=" down-link nav-sublinks">
+          <li><a href="{{path('competition_index')}}">Inscriptions concours</a></li>
           <li><a href="{{path('activities')}}">Nos activités</a></li>
           <li><a href="{{path('galery')}}">Galerie photos</a></li>
           <li><a href="{{path('sponsor')}}">Sponsors & partenaires</a></li>
