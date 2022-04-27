@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class CompetitionType extends AbstractType
 {
@@ -18,6 +19,10 @@ class CompetitionType extends AbstractType
             ->add('date', DateType::class, [
               'widget' => 'single_text',
               'attr' => ['class' => 'js-datepicker form-control']
+            ])
+            ->add('registration_deadline', DateTimeType::class, [
+              'widget' => 'single_text',
+              'attr' => ['class' => 'js-datepicker js-timepicker form-control']
             ])
             ->add('active')
             ->add('team_size')

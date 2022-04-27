@@ -38,6 +38,9 @@
     "amphp/windows-registry": {
         "version": "v0.3.3"
     },
+    "box/spout": {
+        "version": "v3.3.0"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.4"
     },

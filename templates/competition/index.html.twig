@@ -1,62 +1,76 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  {% for competition in active_competitions %}
-<div class="restricted_container">
-  <div class="login-header">
-    <div class="col-20">
-      <img src="{{asset("assets/pictures/logo_club_removebg.png")}}" class="logo_formulaire" alt="forks">
+{% if active_competitions %}
+{% for competition in active_competitions %}
+  <div class="restricted_container">
+    <div class="login-header">
+      <div class="col-20">
+        <img src="{{asset("assets/pictures/logo_club_removebg.png")}}" class="logo_formulaire" alt="forks">
+      </div>
+      <div class="col-80">
+        <h2>{{competition.title}}</h2>
+        <h2>Le {{competition.date | date('d/m/Y')}} </h2>
+        <h4><i>Date limite d'inscription, le {{competition.registrationDeadline | date('d/m/Y à H:i')}}</i> </h4>
+      </div>
     </div>
-    <div class="col-80">
-      <h2>{{competition.title}}</h2>
-      <h2>Le {{competition.date | date('d/m/Y')}} </h2>
-    </div>
-  </div>
-  <hr><br>
-  <h4>{{competition.comment}}</h4>
-  <br><hr>
-  <form class="" action="{{path('competitor_create', {"id" : competition.id})}}" method="post">
-    <button class="btn btn-primary">J'inscris mon équipe</button>
-  </form>
+    <hr><br>
+    <h4>{{competition.comment}}</h4>
+    <br><hr>
+    {% if competition.registrationDeadline > date() %}
+    <form class="" action="{{path('competitor_create', {"id" : competition.id})}}" method="post">
+      <button class="btn btn-primary">J'inscris mon équipe</button>
+    </form>
+    {% else %}
+    <h3 style="color:red;">Les inscriptions sont cloturées</h3>
+  {% endif %}
   <br>
-  <h3>Liste des inscrits</h3>
+  <h3>Équipes inscrites: <i> {{competition.teams | length}}</i></h3>
   <br>
   <table>
     <tr>
       <th>Date d'inscription</th>
       {% for i in 1 .. competition.teamSize  %}
       <th>Concurrent n°{{i}}</th>
-      {% endfor %}
-      <th>Validation</th>
-    </tr>
-    {% for team in competition.teams %}
-    <tr>
-      <td>{{ team.createdAt | date('d/m/Y à H:i')}}</td>
-      {% for i in 1 .. competition.teamSize %}
-        {% if loop.index0 < team.competitors | length %}
-          <td>{{team.competitors[loop.index0].firstname}} {{team.competitors[loop.index0].name}}</td>
-        {% else %}
-          <td style="color:red; font-weight:bold;">manquant</td>
-        {% endif %}
-      {% endfor %}
-      <td>
-        {% if team.active %}
-        <i class="fa fa-check"></i>
-        {% else %}
-        <i class="fa fa-hourglass-start">
-        {% endif %}
-      </td>
-    </tr>
     {% endfor %}
-
-
-
-
-
+    <th>Validation</th>
+  </tr>
+  {% for team in competition.teams %}
+  <tr>
+    <td>{{ team.createdAt | date('d/m/Y à H:i')}}</td>
+    {% for i in 1 .. competition.teamSize %}
+    {% if loop.index0 < team.competitors | length %}
+    <td>{{team.competitors[loop.index0].firstname}} {{team.competitors[loop.index0].name}}</td>
+    {% else %}
+    <td style="color:red; font-weight:bold;">manquant</td>
+  {% endif %}
+  {% endfor %}
+  <td>
+  {% if team.active %}
+  <i class="fa fa-check"></i>
+  {% else %}
+  <i class="fa fa-hourglass-start">
+  {% endif %}
+  </td>
+  </tr>
+  {% endfor %}
   </table>
   <br>
   <i class="fa fa-hourglass-start"><small><i>: En attente de validation</i></small></i>
   <i class="fa fa-check"><small><i>: Validée</i></small></i>
-</div>
+  </div>
 {% endfor %}
+{% else %}
+  <div class="restricted_container">
+    <div class="login-header">
+      <div class="col-20">
+        <img src="{{asset("assets/pictures/logo_club_removebg.png")}}" class="logo_formulaire" alt="logo">
+      </div>
+    <h1>Il n'y a pas d'inscription disponible en ce moment!!</h1>
+  </div>
+{% endif %}
+
+
+
+
 {% endblock %}

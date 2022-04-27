@@ -39,7 +39,7 @@ class CompetitionController extends AbstractController
      * @param  TeamRepository         $repo        [description]
      * @return Response                            [description]
      */
-    public function competitor_create(Competition $competition, $team_id = null, $registred = 0 , Request $request, EntityManagerInterface $manager, TeamRepository $team_repo):Response
+    public function competitor_create(Competition $competition, Request $request, EntityManagerInterface $manager, TeamRepository $team_repo, $team_id = null, $registred = 0):Response
     {
       $competitor = new Competitor;
       $form = $this->createForm(CompetitorType::class, $competitor);

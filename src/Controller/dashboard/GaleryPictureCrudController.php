@@ -77,7 +77,7 @@ class GaleryPictureCrudController extends AbstractController
      * @param  EntityManagerInterface $manager        [description]
      * @return Response                               [description]
      */
-    public function add_tag(GaleryPicture $galery_picture, $tag_id = null, TagRepository $repo_tag, EntityManagerInterface $manager):Response
+    public function add_tag(GaleryPicture $galery_picture, TagRepository $repo_tag, EntityManagerInterface $manager, $tag_id = null):Response
     {
       if (!$tag_id)
       {

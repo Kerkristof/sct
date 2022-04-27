@@ -18,4 +18,10 @@ td{
 td, th {
   border: 1px solid #ddd;
   padding: 8px;
+}
+@media screen and (max-width: 1024px){
+  td, th {
+    padding: 4px;
+    font-size: 6px;
   }
+}

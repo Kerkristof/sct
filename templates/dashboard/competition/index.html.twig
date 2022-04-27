@@ -26,7 +26,7 @@
   <td>
     <small><i><a class="btn btn-primary" href="{{ path('admin_competition_update', {'id' : competition.id}) }}"><i class="fa fa-pencil"></i></a></i></small>
     <small><i><a class="btn btn-success" href="{{ path('admin_competition_show', {'id' : competition.id}) }}"><i class="fa fa-eye"></i></a></i></small>
-    <!-- <small><i><a class="btn btn-danger" href="#" onclick="return confirm('Etes vous certain de vouloir supprimer cet competition?');"><i class="fa fa-trash-o"></i></a></i></small> -->
+    <small><i><a class="btn btn-danger" href="{{ path('admin_competition_delete', {'id' : competition.id}) }}" onclick="return confirm('Etes vous certain de vouloir supprimer cette competition?');"><i class="fa fa-trash-o"></i></a></i></small>
   </td>
 </tr>
 {% endfor %}

@@ -49,6 +49,11 @@ class Competition
      */
     private $teams;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $registration_deadline;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
@@ -145,6 +150,18 @@ class Competition
                 $team->setCompetition(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRegistrationDeadline(): ?\DateTimeInterface
+    {
+        return $this->registration_deadline;
+    }
+
+    public function setRegistrationDeadline(?\DateTimeInterface $registration_deadline): self
+    {
+        $this->registration_deadline = $registration_deadline;
 
         return $this;
     }

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller\dashboard;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +12,7 @@ use App\Entity\Competition;
 use App\Entity\Team;
 use App\Entity\Competitor;
 use App\Form\CompetitorType;
+
 /**
  * @Route("/admin")
  */
@@ -60,6 +60,18 @@ class CompetitionCrudController extends AbstractController
       return $this->render('dashboard/competition/competition_show.html.twig', [
         "competition" => $competition
       ]);
+    }
+    /**
+     * @Route("/competition/delete/{id}", name="admin_competition_delete")
+     * @param  Competition            $competition [description]
+     * @param  EntityManagerInterface $manager     [description]
+     * @return Response                            [description]
+     */
+    public function competition_delete(Competition $competition, EntityManagerInterface $manager) : Response
+    {
+      $manager->remove($competition);
+      $manager->flush();
+      return $this->RedirectToRoute('admin_competition_index');
     }
     /**
      * @Route("/team/delete/{id}", name="admin_team_delete")
