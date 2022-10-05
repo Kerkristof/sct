@@ -13,7 +13,7 @@
       <th>Action</th>
     </tr>
   </tr>
-  {% for team in competition.teams %}
+  {% for team in competition.teams | sort((a,b) => a.createdAt <=> b.createdAt) %}
   <tr>
     <td>{{ team.createdAt | date('d/m/Y à H:i')}}</td>
     {% for i in 1 .. competition.teamSize %}

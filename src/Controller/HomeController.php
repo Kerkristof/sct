@@ -23,8 +23,10 @@ class HomeController extends AbstractController
      * @Route("/", name="home")
      */
     public function index(ArticleRepository $article_repo, Request $request,
-    EntityManagerInterface $manager, StatisticRepository $statistic_repo): Response
+    EntityManagerInterface $manager, StatisticRepository $statistic_repo, SponsorRepository $sponsor_repo): Response
     {
+      // sponsors
+        $sponsors = $sponsor_repo->findAll();
       // get ip adress from client
       $ip_adress = $request->getClientIp();
       // check if this ip adress already exists in DB
@@ -53,7 +55,8 @@ class HomeController extends AbstractController
       }
       $online_articles = $article_repo->findBy(['online'=>true]);
       return $this->render('home/index.html.twig', [
-          'online_articles' => $online_articles
+          'online_articles' => $online_articles,
+          'sponsors' => $sponsors
       ]);
     }
     /**

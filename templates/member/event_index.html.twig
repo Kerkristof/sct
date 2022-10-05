@@ -22,6 +22,15 @@
       <div class="card-footer">
       <p>Créé le {{event.createdAt | date('d/m/Y')}} par {{event.author.firstname}} {{event.author.name}}</p>
         <p>Mis à jour le {{event.updatedAt | date('d/m/Y')}}</p>
+        <br>
+        {% if event.date > date() %}
+          {% if app.user in event.subscriber %}
+            <a class="btn btn-danger" href="{{path('member_remove_subscriber', {"id" : event.id})}}" onclick="return confirm('Etes vous certain de vouloir vous désinscrire de cet événement?');">Je me désinscris</a>
+          {% else %}
+            <a class="btn btn-success" href="{{path('member_add_subscriber', {"id" : event.id})}}">Je m'inscris</a>
+          {% endif %}
+        {% endif %}
+        <a class="btn btn-primary" href="{{path('member_list_subscriber', {"id" : event.id})}}"><i>({{event.subscriber|length}})</i> <i class="fa fa-eye"></i></a>
       </div>
     </div>
     {% endfor %}

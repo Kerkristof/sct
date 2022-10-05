@@ -8,6 +8,12 @@
   </div>
   <!-- <img id="header-logo" src="{{asset('assets/pictures/carte_voeux_2022.jpg')}}" alt=""> -->
 </div>
+<!-- AFFICHAGE DU CAROUSEL SPONSOR -->
+<div class="slideshow">
+    {% for sponsor in sponsors %}
+      <img src="{{asset('sponsor_images/' ~ sponsor.imageName)}}" alt=""/>
+    {% endfor %}
+</div>
 
 <!-- AFFICHAGE DES ARTICLES online -->
 <div class="article-container restricted_container">
@@ -25,13 +31,22 @@
 
         <div class="paragraph-image" >
           {% for image in paragraph.paragraphImages %}
-            <img src="{{asset('paragraph_images/' ~ image.imageName)}}" alt="{{image.imageName}}" width="100%">
+            <img class="image" src="{{asset('paragraph_images/' ~ image.imageName)}}" alt="{{image.imageName}}" width="100%">
           {% endfor %}
         </div>
       {% endfor %}
     </div>
   </div>
   {% endfor %}
+
+  <!-- The expanding image container -->
+  <div class="container">
+    <!-- Close the image -->
+    <span  class="closebtn">&times;</span>
+
+    <!-- Expanded image -->
+    <img id="expandedImg">
+  </div>
 </div>
 
 

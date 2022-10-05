@@ -29,14 +29,17 @@
   <br>
   <table>
     <tr>
+      <th>N°</th>
       <th>Date d'inscription</th>
       {% for i in 1 .. competition.teamSize  %}
       <th>Concurrent n°{{i}}</th>
     {% endfor %}
     <th>Validation</th>
   </tr>
-  {% for team in competition.teams %}
+  {% for team in competition.teams | sort((a,b) => a.createdAt <=> b.createdAt ) %}
+
   <tr>
+    <td>{{ loop.index }}</td>
     <td>{{ team.createdAt | date('d/m/Y à H:i')}}</td>
     {% for i in 1 .. competition.teamSize %}
     {% if loop.index0 < team.competitors | length %}
@@ -46,13 +49,20 @@
   {% endif %}
   {% endfor %}
   <td>
-  {% if team.active %}
-  <i class="fa fa-check"></i>
-  {% else %}
-  <i class="fa fa-hourglass-start">
-  {% endif %}
+    {% if loop.index <= 80  %}
+      {% if team.active %}
+      <i class="fa fa-check"></i>
+      {% else %}
+        <i class="fa fa-hourglass-start">
+      {% endif %}
+    {% else %}
+        <i style="color:red;">Sur liste d'attente</i>
+    {% endif %}
   </td>
   </tr>
+
+
+
   {% endfor %}
   </table>
   <br>

@@ -12,6 +12,7 @@ use App\Repository\BlogCommentRepository;
 use App\Entity\BlogComment;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\EventRepository;
+use App\Entity\Event;
 
 /**
  * @Route("/member")
@@ -91,6 +92,51 @@ class MemberController extends AbstractController
       );
       return $this->render('member/event_index.html.twig', [
         'events' => $events
+      ]);
+    }
+
+    /**
+     * @Route("/event/add_subscriber/{id}", name="member_add_subscriber")
+     * @param Event                  $event   [description]
+     * @param EntityManagerInterface $manager [description]
+     */
+    public function add_event_subscriber(Event $event, EntityManagerInterface $manager)
+    {
+      $user = $this->getUser();
+      $user->addEvent($event);
+      $event->addSubscriber($user);
+      $manager->persist($event);
+      $manager->persist($user);
+      $manager->flush();
+      return $this->RedirectToRoute('member_event_index');
+    }
+
+    /**
+     * @Route("/event/remove_subscriber/{id}", name="member_remove_subscriber")
+     * @param  Event                  $event   [description]
+     * @param  EntityManagerInterface $manager [description]
+     * @return [type]                          [description]
+     */
+    public function remove_event_subscriber(Event $event, EntityManagerInterface $manager)
+    {
+      $user = $this->getUser();
+      $user->removeEvent($event);
+      $event->removeSubscriber($user);
+      $manager->persist($event);
+      $manager->persist($user);
+      $manager->flush();
+      return $this->RedirectToRoute('member_event_index');
+
+    }
+    /**
+     * @Route("/event/list_subscriber/{id}", name="member_list_subscriber")
+     * @param  Event  $event [description]
+     * @return [type]        [description]
+     */
+    public function list_subscriber(Event $event)
+    {
+      return $this->render('member/event_subscriber.html.twig', [
+        'event' => $event
       ]);
     }
 }

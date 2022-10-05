@@ -59,9 +59,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $articles;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Event::class, mappedBy="subscriber")
+     */
+    private $events;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -214,6 +220,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($article->getAuthor() === $this) {
                 $article->setAuthor(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Event[]
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Event $event): self
+    {
+        if (!$this->events->contains($event)) {
+            $this->events[] = $event;
+            $event->addSubscriber($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): self
+    {
+        if ($this->events->removeElement($event)) {
+            $event->removeSubscriber($this);
         }
 
         return $this;

@@ -7,6 +7,13 @@ $(document).ready(function(){
     $('.nav-sublinks', this).toggleClass('responsive');
   });
 
+  // ICI LE CODE DU CAROUSSEL
+  setInterval(function(){
+    let carouselWidth = $('.slideshow').width();
+    $('.slideshow img:first').animate({marginLeft:-carouselWidth}, 800,function(){
+      $('.slideshow img:last').after($(this).css({marginLeft:0}));
+    });
+  },3500);
 
   $(window).scroll(function(){
     if ($(this).scrollTop() > 20) {
