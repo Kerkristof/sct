@@ -1,0 +1,34 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block body %}
+
+<h1>Dossier: "{{folder.title}}"</h1>
+<a class="btn btn-primary" href="{{path('admin_doc_folder_add_doc_file', {'id' : folder.id})}}">associer un PDF</a>
+<h4>Fichiers associés</h4>
+<table>
+  <tr>
+    <th>Titre</th>
+    <th>Date</th>
+    <th>Auteur</th>
+    <th>Description</th>
+    <th>Fichier</th>
+  </tr>
+  {% for file in folder.docFiles %}
+      <tr>
+        <td>{{file.title}}</td>
+        <td>{{file.createdAt | date('d/m/Y')}}</td>
+        <td>{{file.author.name}}</td>
+        <td> <textarea rows="2" cols="50">{{file.content}}</textarea></td>
+        <td>
+          <a href="{{ asset('files/'~ file.fileName)}}" target="blanc"pdf><small><i>{{ file.title }} (PDF)</small></i></a>
+          <a href="{{path('admin_delete_doc_file', {'id' : file.id})}}" style="float:right;" onclick="return confirm('Etes vous certain de vouloir supprimer ce fichier?');"><i class="fa fa-trash-o"></i></a><br>
+        </td>
+
+      </tr>
+  {% endfor %}
+</table>
+
+
+
+
+
+{% endblock %}

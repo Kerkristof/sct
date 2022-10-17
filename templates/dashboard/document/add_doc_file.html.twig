@@ -1,0 +1,13 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+<div class="form">
+  {{ form_start(formDocFile) }}
+  {{ form_row(formDocFile.title, {'label':"Titre", 'attr': {'class':'form-control'}})}}
+  {{ form_row(formDocFile.content, {'label':"Description", 'attr': {'class':'form-control'}})}}
+  {{ form_row(formDocFile.file_name, {'label' : "Choisissez votre fichier", 'attr' : {'class':'form-control'}}) }}
+
+  <button type="submit" class="btn btn-success  ">Ajouter</button>
+  {{ form_end(formDocFile) }}
+</div>
+{% endblock %}

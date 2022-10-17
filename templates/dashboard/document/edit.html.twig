@@ -1,0 +1,18 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+
+{{form_start(formFolder)}}
+{{form_row(formFolder.title, {'label' : "Titre", 'attr' : {'placeholder' : "titre...", 'class':"form-control"}})}}
+{{form_row(formFolder.public, {'label' : "Public"})}}
+<br>
+<button type="submit" class="btn btn-success">
+  {% if editMode %}
+  Enregistrer les modifications
+  {% else %}
+  Ajouter le fichier
+  {% endif %}
+</button>
+{{form_end(formFolder)}}
+
+{% endblock %}

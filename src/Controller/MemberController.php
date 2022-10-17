@@ -13,6 +13,7 @@ use App\Entity\BlogComment;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\EventRepository;
 use App\Entity\Event;
+use App\Repository\DocFolderRepository;
 
 /**
  * @Route("/member")
@@ -22,9 +23,12 @@ class MemberController extends AbstractController
     /**
      * @Route("/index", name="member_index")
      */
-    public function index(): Response
+    public function index(DocFolderRepository $repo): Response
     {
-      return $this->render('member/index.html.twig');
+      $folders = $repo->findAll();
+      return $this->render('member/index.html.twig', [
+        'folders' => $folders
+      ]);
     }
 
     /**

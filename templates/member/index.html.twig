@@ -2,16 +2,14 @@
 
 {% block body %}
 <div class="restricted_container useful-link">
-  <br>
-  <p>Relevé d'identité bancaire de l'association
-    <a class="link" href="{{ asset('assets/brochures/RIB_surfcasting_turballais.pdf') }}" target="_blank" >(PDF)</a>
-  </p><hr>
-  <p>Fichier des licenciés 2022
-    <a class="link" href="{{ asset('assets/brochures/FICHIER DES LICENCIES 2022.pdf') }}" target="_blank" >(PDF)</a>
-  </p><hr>
-  <p>Nos sites de pêche
-    <a class="link" href="{{ asset('assets/brochures/SITES 2016.pdf') }}" target="_blank" >(PDF)</a>
-  </p><hr>
-</div>
 
+  {% for folder in folders %}
+      <h4>{{folder.title}}</h4>
+      {% for file in folder.docFiles %}
+          <a href="{{ asset('files/'~ file.fileName)}}" target="blanc"pdf><small><i>{{ file.title }} (PDF)</small></i></a><br>
+      {% endfor %}
+      <hr><br>
+  {% endfor %}
+
+</div>
 {% endblock %}

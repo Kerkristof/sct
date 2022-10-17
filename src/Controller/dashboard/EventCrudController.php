@@ -8,13 +8,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\EventRepository;
 use App\Repository\EventCategoryRepository;
 use App\Entity\Event;
 use App\Form\EventType;
 use App\Entity\EventFile;
 use App\Form\EventFileType;
-use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @Route("/admin")
@@ -91,7 +91,7 @@ class EventCrudController extends AbstractController
     if ($form->isSubmitted() && $form->isValid()){
       $pdf = $form->get('filename')->getData();
 
-      if ($pdf) {
+      if ($pdf){
       $originalFilename = pathinfo($pdf->getClientOriginalName(), PATHINFO_FILENAME);
       // this is needed to safely include the file name as part of the URL
       $safeFilename = $slugger->slug($originalFilename);

@@ -1,0 +1,30 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block body %}
+<a class="btn btn-primary" href="{{path('admin_doc_folder_create')}}">Ajouter un dossier</a>
+<h3>Liste des dossiers</h3>
+<hr>
+<table>
+  <tr>
+    <th>Titre</th>
+    <th>visibilité</th>
+    <th>Actions</th>
+  </tr>
+{% for folder in folders %}
+  <tr>
+    <td>{{folder.title}}</td>
+    {% if folder.public %}
+      <td><i class="fa fa-eye" aria-hidden="true"></i></td>
+    {% else %}
+      <td><i class="fa fa-eye-slash" aria-hidden="true"></i></td>
+    {% endif %}
+    <td>
+      <small><i><a class="btn btn-primary" href="{{ path('admin_doc_folder_update', {'id' : folder.id}) }}"><i class="fa fa-pencil"></i></a></i></small>
+      <small><i><a class="btn btn-success" href="{{ path('admin_doc_folder_show', {'id' : folder.id})}}"><i class="fa fa-eye"></i></a></i></small>
+      <small><i><a class="btn btn-danger" href="{{path('admin_doc_folder_delete', {'id' : folder.id})}}" onclick="return confirm('Etes vous certain de vouloir supprimer ce fichier et son contenu?');"><i class="fa fa-trash-o"></i></a></i></small>
+    </td>
+  </tr>
+{% endfor %}
+</table>
+
+
+{% endblock %}
