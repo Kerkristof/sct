@@ -53,12 +53,29 @@ class HomeController extends AbstractController
         $manager->persist($statistic);
         $manager->flush($statistic);
       }
-      $online_articles = $article_repo->findBy(['online'=>true]);
+      $online_articles = $article_repo->findBy(['online'=>true], ['created_at' => 'DESC']);
       return $this->render('home/index.html.twig', [
           'online_articles' => $online_articles,
           'sponsors' => $sponsors
       ]);
     }
+
+    /**
+     * @Route("/cookies/agree", name="cookies_agree")
+     * @return Response [description]
+     */
+    public function cookiesConsent(): Response
+    {
+      $expires = time() + (30 * 24 * 3600);
+      $cookie_name ="cookieConsent";
+      $cookie_value ="agree";
+      setCookie($cookie_name, $cookie_value, $expires, "/");
+      return $this->RedirectToRoute("home");
+    }
+
+
+
+
     /**
      * @Route("/useful_link", name="useful_link")
      * @return Response [description]
@@ -90,9 +107,17 @@ class HomeController extends AbstractController
                       ->setEmail($request->request->get('email'))
                       ->setSubject($request->request->get('subject'))
                       ->setContent($request->request->get('content'));
-      $entityManager->persist($contact_message);
-      $entityManager->flush();
-      return $this->redirectToRoute('home');
+      if ($request->request->get('check') == "SURFCASTING@44")
+      {
+        $entityManager->persist($contact_message);
+        $entityManager->flush();
+        $this->addFlash('message_success', 'Votre message à bien été transmis à l\'équipe du SCT');
+      }
+      else
+      {
+        $this->addFlash('message_failure', 'Veuillez remplir le formulaire en intégralité');
+      }
+      return $this->redirectToRoute('contact_us');
     }
     /**
      * @Route("/legal_mention", name="legal_mention")

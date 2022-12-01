@@ -4,6 +4,12 @@
 <div class="restricted_container">
   <h2>Laissez nous un message</h2>
   <br>
+  {% for flashError in app.flashes('message_failure') %}
+    <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+  {% endfor %}
+  {% for flashSuccess in app.flashes('message_success') %}
+    <div class="alert alert-success" role="alert">{{ flashSuccess }}</div>
+  {% endfor %}
 
   <!-- FORMULAIRE DE CONTACT -->
   <form action="{{path('contact_post')}}" method="post">
@@ -12,6 +18,8 @@
     <input class="form-control" placeholder="E mail *"  name="email" required>
     <input class="form-control" placeholder="Sujet *"  name="subject" required>
     <textarea class="form-control" placeholder="Votre message... *"  name="content" required></textarea>
+    <label for="check"><small>Veuillez recopier le code "<strong>SURFCASTING@44</strong>" ci-dessous afin de vérifier que ce message est bien émis par une personne.</small></label>
+    <input class="form-control" placeholder="Recopiez le code ici* ..." name="check" required>
     <button class="btn btn-primary"  type="submit">Envoyer</button>
   </form>
 </div>

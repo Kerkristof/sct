@@ -15,6 +15,11 @@ $(document).ready(function(){
     });
   },3500);
 
+  // COOKIE CONSENT WINDOW
+  $(".no-cookies").click(function(){
+  $('.cookie').hide();
+  });
+
   $(window).scroll(function(){
     if ($(this).scrollTop() > 20) {
       $('.nav-bar').addClass('scroll');

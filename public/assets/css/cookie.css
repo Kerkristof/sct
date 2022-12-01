@@ -1,0 +1,14 @@
+.cookie
+{
+  width: 50%;
+  height: 100px;
+  margin-left: 25%;
+  padding-top: 10px;
+  background-color: white;
+  border: solid blue 3px;
+  text-align: center;
+}
+.no-cookies
+{
+  cursor: pointer;
+}

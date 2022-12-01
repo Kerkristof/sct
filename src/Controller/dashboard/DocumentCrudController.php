@@ -117,7 +117,6 @@ class DocumentCrudController extends AbstractController
 
       // updates the 'brochureFilename' property to store the PDF file name
       // instead of its contents
-      $file->setTitle($originalFilename);
       $file->setFileName($newFilename);
       $manager->persist($file);
       $manager->flush($file);

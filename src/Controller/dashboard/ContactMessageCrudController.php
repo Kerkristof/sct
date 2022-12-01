@@ -37,4 +37,33 @@ class ContactMessageCrudController extends AbstractController
       $manager->flush($contact_message);
       return $this->redirectToRoute('admin_contact_message_index');
     }
-}
+
+    /**
+     * @Route("/contact/message/add_subscriber/{id}", name="admin_contact_message_add_subscriber")
+     * @param  ContactMessage         $message [description]
+     * @param  EntityManagerInterface $manager [description]
+     * @return Response                        [description]
+     */
+    public function add_contact_message_subscriber(ContactMessage $message, EntityManagerInterface $manager):Response
+    {
+      $user = $this->getUser();
+      $message->addUser($user);
+      $manager->persist($message);
+      $manager->flush();
+      return $this->RedirectToRoute('admin_contact_message_index');
+    }
+    /**
+     * @Route("/contact/message/remove_subscriber/{id}", name="admin_contact_message_remove_subscriber")
+     * @param  ContactMessage         $message [description]
+     * @param  EntityManagerInterface $manager [description]
+     * @return Response                        [description]
+     */
+    public function remove_contact_message_subscriber(ContactMessage $message, EntityManagerInterface $manager):Response
+    {
+      $user = $this->getUser();
+      $message->removeUser($user);
+      $manager->persist($message);
+      $manager->flush();
+      return $this->RedirectToRoute('admin_contact_message_index');
+    }
+ }

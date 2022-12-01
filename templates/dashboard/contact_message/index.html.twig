@@ -9,7 +9,8 @@
     <th>Email</th>
     <th>Sujet</th>
     <th>Message</th>
-    <th>Action</th>
+    <th>Réponse traitée par </th>
+    <th>Supprimer</th>
   </tr>
   {% for msg in contact_messages %}
     <tr>
@@ -18,6 +19,29 @@
       <td>{{ msg.email }}</td>
       <td>{{ msg.subject }}</td>
       <td> <textarea rows="4" cols="50">{{msg.content}}</textarea></td>
+
+
+      <td>
+        {% if msg.user is empty %}
+          <small><i><a class="btn btn-danger" href="{{path('admin_contact_message_add_subscriber', {'id' : msg.id })}}">En attente</a></i></small>
+        {% else %}
+          {% for user in msg.user %}
+
+
+            <small style="background-color:lightgreen; padding:5px;"><i>
+            {{user.firstname}} {{user.name}}
+            {% if app.user in msg.user %}
+              <a href="{{path('admin_contact_message_remove_subscriber', {'id' : msg.id })}}"><i class="fa fa-trash-o"></i></a>
+            {% endif %}
+            </i></small>
+
+
+          {% endfor %}
+        {% endif %}
+      </td>
+
+
+
       <td>
         <small><i><a class="btn btn-danger" href="{{path('admin_contact_message_delete', {'id' : msg.id })}}" onclick="return confirm('Etes vous certain de vouloir supprimer ce message?');"><i class="fa fa-trash-o"></i></a></i></small>
       </td>

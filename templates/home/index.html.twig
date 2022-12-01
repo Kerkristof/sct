@@ -8,12 +8,21 @@
   </div>
   <!-- <img id="header-logo" src="{{asset('assets/pictures/carte_voeux_2022.jpg')}}" alt=""> -->
 </div>
-<!-- AFFICHAGE DU CAROUSEL SPONSOR -->
-<div class="slideshow">
-    {% for sponsor in sponsors %}
-      <img src="{{asset('sponsor_images/' ~ sponsor.imageName)}}" alt=""/>
-    {% endfor %}
+{% if app.request.cookies.get('cookieConsent') != 'agree' %}
+<!-- AFFICHAGE COOKIES CONSENT -->
+<div class="cookie">
+  <h4>Ce site utilise des cookies!</h4></br>
+  <a class="btn btn-danger no-cookies">Je refuse</a>
+  <a href="{{path('cookies_agree')}}" class="btn btn-primary">J'accepte</a>
+
 </div>
+{% endif %}
+<!-- AFFICHAGE DU CAROUSEL SPONSOR -->
+  <div class="slideshow">
+    {% for sponsor in sponsors %}
+    <img src="{{asset('sponsor_images/' ~ sponsor.imageName)}}" alt=""/>
+    {% endfor %}
+  </div>
 
 <!-- AFFICHAGE DES ARTICLES online -->
 <div class="article-container restricted_container">
