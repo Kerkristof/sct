@@ -5,7 +5,8 @@
   text-decoration: none;
 }
 body{
-  background-image: url('../pictures/carte1.png');
+  /* background-image: url('../pictures/carte1.png'); */
+  background-color: rgb(240, 240, 240);
 }
 .main{
   z-index: 1;
@@ -15,9 +16,9 @@ body{
   display:flex;
   overflow: hidden;
   position: fixed;
-  top: 105px;
-  left: 5px;
-  width: 15%;
+  top: 135px;
+  right: 5px;
+  width: 13%;
 }
 .slideshow img{
   width: 100%;
@@ -27,51 +28,31 @@ body{
 
 /* ---- PICTURES ---- */
 .wave-container{
+  position:relative;
   display:flex;
-  justify-content: center;
-  align-items: center;
+  align-items:center;
+  height:280px;
   background-image: url("../../assets/pictures/plage_large_screen_01.jpg");
   background-repeat: no-repeat;
   background-size:cover;
-  height:40vh;
 }
 #header-logo{
-  width: 40%;
-  text-align: center;
-  border:3px solid black;
-  color: black;
-  font-weight: bold;
+  margin-left:10%;
+  color: white;
+  font-family: Ubuntu, sans-serif;
+  font-size: 1.7rem;
 }
-#header-logo p:first-child{
-  margin:50px 0px 0px 0px;
-  letter-spacing:7px;
-  font-family: "EB Garamond";
-  font-size: 45px;
-}
-#header-logo p:last-child{
-  margin:20px 0px 50px 0px;
-  font-family: Helvetica, sans-serif;
-  letter-spacing:4px;
-  font-size: 25px;
+.divider{
+  position:absolute;
+  width:100%;
+  bottom: -4px;
 }
 @media screen and (max-width: 768px){
   .wave-container{
-    background-image: url("../../assets/pictures/plage_small_screen.jpg");
+    height:150px;
   }
   #header-logo{
-    width: 60%;
-  }
-  #header-logo p:first-child{
-    margin:30px 0px 0px 0px;
-    letter-spacing:7px;
-    font-family: "EB Garamond";
-    font-size: 30px;
-  }
-  #header-logo p:last-child{
-    margin:20px 0px 30px 0px;
-    font-family: Helvetica, sans-serif;
-    letter-spacing:4px;
-    font-size: 18px;
+    font-size: 1rem;
   }
 }
 /* ---- PICTURES END ---- */
@@ -82,9 +63,8 @@ body{
   border-radius:10px;
   background-color: white;
   width: 80%;
-}
 /* ---- USEFULL LINK ---- */
-.useful-link{
+.useful-link{160
   font-size: 1.2rem;
 }
 .useful-link p{
@@ -100,6 +80,7 @@ body{
   width:100%;
 }
 /* ALERT */
+}
 .alert{
   width: 100%;
   margin:15px 0;
@@ -131,7 +112,7 @@ body{
 /* ---- ACTIVITIES ----  */
 .activities{
   padding:10px 0px 10px 60px;
-  background-image: url("../../assets/pictures/plage_2.jpg");
+  background-image: url("../../assets/pictures/activities_bg.jpg");
   background-repeat: no-repeat;
   background-size:cover;
 }

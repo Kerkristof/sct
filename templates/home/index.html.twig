@@ -3,20 +3,24 @@
 {% block body %}
 <div class="wave-container">
   <div id="header-logo">
-    <p>SCT</p>
-    <p>Surfcasting Turballais</p>
+    <h2>Surfcasting Turballais</h2>
   </div>
-  <!-- <img id="header-logo" src="{{asset('assets/pictures/carte_voeux_2022.jpg')}}" alt=""> -->
+  <div class="divider">
+    <svg style="fill:rgb(240, 240, 240);"viewBox="0 0 1000 30" preserveAspectRatio="none">
+      <path d="M1000,0 S200,60 0,0 L0,30 L1000,30 L1000,0 Z"></path>
+    </svg>
+  </div>
 </div>
+
 {% if app.request.cookies.get('cookieConsent') != 'agree' %}
 <!-- AFFICHAGE COOKIES CONSENT -->
 <div class="cookie">
   <h4>Ce site utilise des cookies!</h4></br>
   <a class="btn btn-danger no-cookies">Je refuse</a>
   <a href="{{path('cookies_agree')}}" class="btn btn-primary">J'accepte</a>
-
 </div>
 {% endif %}
+
 <!-- AFFICHAGE DU CAROUSEL SPONSOR -->
   <div class="slideshow">
     {% for sponsor in sponsors %}

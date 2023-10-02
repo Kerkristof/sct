@@ -132,4 +132,32 @@ class CompetitionCrudController extends AbstractController
         'editMode' => $competitor-> getId() != null
       ]);
     }
+    /**
+     * @Route("/team/completion/{id}", name="admin_team_completion")
+     * @param  Team                   $team    [description]
+     * @param  EntityManagerInterface $manager [description]
+     * @return [type]                          [description]
+     */
+    public function team_completion(Team $team,Request $request, EntityManagerInterface $manager)
+    {
+      $competitor = new Competitor;
+      $competitor->setTeam($team);
+      $competition = $team->getCompetition();
+      $form = $this->createForm(CompetitorType::class, $competitor);
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form-> isValid())
+      {
+        $manager->persist($competitor);
+        $manager->flush($competitor);
+        return $this->RedirectToRoute('admin_team_show', [
+          'id' => $competitor->getTeam()->getId()
+        ]);
+      }
+      return $this->render('/competition/competitor_edit.html.twig', [
+        'formCompetitor' => $form->createView(),
+        'competition' => $competition,
+        'registred' => -1,
+        'editMode' => $competitor->getId() != null
+      ]);
+    }
 }

@@ -26,7 +26,7 @@ class HomeController extends AbstractController
     EntityManagerInterface $manager, StatisticRepository $statistic_repo, SponsorRepository $sponsor_repo): Response
     {
       // sponsors
-        $sponsors = $sponsor_repo->findAll();
+        $sponsors = $sponsor_repo->findBy(['active'=>true]);
       // get ip adress from client
       $ip_adress = $request->getClientIp();
       // check if this ip adress already exists in DB

@@ -49,11 +49,11 @@ class EmailService
 
     if ($entity Instanceof BlogComment) {
       $email->from('surfcastingturballais@lanco.ovh')
-            ->subject('Un nouveau message vient d\'être publié sur le forum')
-            ->htmlTemplate('email_template/blog_comment_notification.html.twig')
-            ->context([
-              'entity' => $entity,
-            ]);
+      ->subject('Un nouveau message vient d\'être publié sur le forum')
+      ->htmlTemplate('email_template/blog_comment_notification.html.twig')
+      ->context([
+        'entity' => $entity,
+      ]);
       foreach ($recipients as $recipient) {
         if ($this->granted_service->isGranted($recipient, 'ROLE_MEMBER' )) {
           $email->addTo($recipient->getEmail());

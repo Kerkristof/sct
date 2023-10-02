@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
 {% if active_competitions %}
 {% for competition in active_competitions %}
@@ -37,7 +36,6 @@
     <th>Validation</th>
   </tr>
   {% for team in competition.teams | sort((a,b) => a.createdAt <=> b.createdAt ) %}
-
   <tr>
     <td>{{ loop.index }}</td>
     <td>{{ team.createdAt | date('d/m/Y à H:i')}}</td>
@@ -60,9 +58,6 @@
     {% endif %}
   </td>
   </tr>
-
-
-
   {% endfor %}
   </table>
   <br>
@@ -79,8 +74,4 @@
     <h1>Il n'y a pas d'inscription disponible en ce moment!!</h1>
   </div>
 {% endif %}
-
-
-
-
 {% endblock %}

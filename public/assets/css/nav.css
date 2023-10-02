@@ -4,12 +4,15 @@
   position:sticky;
   top: 0;
   width: 100%;
-  height: 100px;
-  font-family: 'Roboto';
+  height: 130px;
+  font-family: Ubuntu;
   display:flex;
   justify-content:space-around;
-  background-color:#0a3d62;
+  background-color:#fff;
   align-items:center;
+}
+.nav-logo img{
+  width:120px;
 }
 .nav-links{
   display:flex;
@@ -23,7 +26,7 @@
 .nav-links li a, .nav-links li{
   font-familly:sans-serif;
   font-size:18px;
-  color: white;
+  color: grey;
 }
 .nav-links>li:first-child>a{
   text-transform:uppercase;
@@ -40,7 +43,7 @@
   position:absolute;
   display:flex;
   flex-direction: column;
-  background-color:#0a3d62;
+  background-color:white;
   padding:0 10px;
   visibility:hidden;
 }
@@ -56,21 +59,38 @@
   width:25px;
   height:3px;
   margin: 4px;
-  background-color: white;
+  background-color: grey;
   cursor: pointer;
 }
 .nav-burger{
   display:none;
 }
 @media screen and (max-width: 1024px){
+  .nav-bar{
+    height: 80px;
+    font-family: Ubuntu;
+    display:flex;
+    justify-content:space-between;
+    background-color:#fff;
+    align-items:center;
+  }
+  .nav-logo{
+    margin-left:20px;
+  }
+  .nav-burger{
+    margin-right:20px;
+  }
+  .nav-logo img{
+    width:70px;
+  }
   .nav-links{
     flex-direction:column;
     justify-content: space-around;
     position:absolute;
-    top:100px;
-    left:0;
+    top:80px;
+    left:20%;
     background-color:#0a3d62;
-    width:100%;
+    width:60%;
     height:80vh;
     visibility:hidden;
   }

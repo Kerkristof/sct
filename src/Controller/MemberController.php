@@ -92,7 +92,7 @@ class MemberController extends AbstractController
       $events = $paginator->paginate(
         $data,
         $current_page = $request->query->getInt('page', 1),
-        6
+        9
       );
       return $this->render('member/event_index.html.twig', [
         'events' => $events
